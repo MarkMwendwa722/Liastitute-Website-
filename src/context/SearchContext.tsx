@@ -1,6 +1,7 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
 } from 'react';
@@ -32,11 +33,44 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState<SortOption>('featured');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
-  const uniqueProducts = PRODUCTS.filter((p, i, arr) => arr.findIndex(x => x.image === p.image) === i);
-  const [products] = useState<Product[]>(uniqueProducts);
+  const [products, setProducts] = useState<Product[]>([]);
   const [categories] = useState<string[]>(CATEGORIES);
   const [loading] = useState(false);
   const [error] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const uniqueProducts = PRODUCTS.filter(
+      (product, index, arr) =>
+        typeof product.image === 'string' &&
+        product.image.trim() !== '' &&
+        arr.findIndex((candidate) => candidate.image === product.image) === index,
+    );
+
+    const preload = async () => {
+      const validatedProducts = await Promise.all(
+        uniqueProducts.map(
+          (product) =>
+            new Promise<Product | null>((resolve) => {
+              const image = new Image();
+              image.onload = () => resolve(product);
+              image.onerror = () => resolve(null);
+              image.src = product.image;
+            }),
+        ),
+      );
+
+      if (!cancelled) {
+        setProducts(validatedProducts.filter((product): product is Product => product !== null));
+      }
+    };
+
+    preload();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const filtered = products.filter((p) => {
     const matchesQuery =

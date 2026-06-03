@@ -6,12 +6,22 @@ import { useSearch } from '../context/SearchContext';
 
 export default function Header() {
   const { totalItems } = useCart();
-  const { query, setQuery, setSelectedCategory, categories } = useSearch();
+  const { query, setQuery, setSelectedCategory, categories, filteredProducts } = useSearch();
   const [menuOpen, setMenuOpen] = useState(false);
   const [catMenuOpen, setCatMenuOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
   const navigate = useNavigate();
   const searchRef = useRef<HTMLDivElement>(null);
+  const trimmedQuery = query.trim().toLowerCase();
+  const searchSuggestions = trimmedQuery
+    ? filteredProducts
+        .filter((product) => {
+          const hasImage = typeof product.image === 'string' && product.image.trim() !== '';
+          const haystack = `${product.name} ${product.category} ${product.description}`.toLowerCase();
+          return hasImage && haystack.includes(trimmedQuery);
+        })
+        .slice(0, 5)
+    : [];
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +33,12 @@ export default function Header() {
     setCatMenuOpen(false);
     setMenuOpen(false);
     navigate('/products');
+  };
+
+  const goToProduct = (id: number) => {
+    setMenuOpen(false);
+    setSearchFocused(false);
+    navigate(`/product/${id}`);
   };
 
   useEffect(() => {
@@ -39,7 +55,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white shadow-md">
       {/* Top bar */}
       <div className="border-b border-gray-100">
-        <div ref={searchRef} className="max-w-7xl mx-auto px-4 py-3">
+        <div ref={searchRef} className="relative max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center gap-3 md:gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center shrink-0 no-underline">
@@ -149,6 +165,49 @@ export default function Header() {
               </div>
             </form>
           </div>
+
+          {searchFocused && trimmedQuery && searchSuggestions.length > 0 && (
+            <div className="absolute left-4 right-4 top-[calc(100%-0.25rem)] md:left-1/2 md:right-auto md:w-[min(42rem,calc(100vw-2rem))] md:-translate-x-1/2 z-50">
+              <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-2xl">
+                <div className="px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-gray-400 border-b border-gray-100">
+                  Suggestions
+                </div>
+                <div className="max-h-80 overflow-auto">
+                  {searchSuggestions.map((product) => (
+                    <button
+                      key={product.id}
+                      type="button"
+                      onMouseDown={(e) => e.preventDefault()}
+                      onClick={() => goToProduct(product.id)}
+                      className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors"
+                    >
+                      <div className="w-12 h-12 rounded-xl overflow-hidden bg-gray-100 shrink-0">
+                        <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold text-navy truncate">{product.name}</p>
+                        <p className="text-xs text-gray-500 truncate">{product.category}</p>
+                      </div>
+                      <span className="text-sm font-bold text-navy shrink-0">
+                        KSh {product.price.toFixed(2)}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    setSearchFocused(false);
+                    navigate(trimmedQuery ? `/products?q=${encodeURIComponent(query.trim())}` : '/products');
+                  }}
+                  className="w-full border-t border-gray-100 px-4 py-3 text-sm font-semibold text-brand hover:bg-blue-50 transition-colors"
+                >
+                  View all results for “{query.trim()}”
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
