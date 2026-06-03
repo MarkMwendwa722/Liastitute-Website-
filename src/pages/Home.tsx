@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Truck, RotateCcw, ShieldCheck, Headphones, Flame, Laptop, Home as HomeIcon, Dumbbell, Sparkles, LayoutGrid, Tag, ChevronLeft, ChevronRight, Car, Droplets, Armchair, Baby, ChefHat, Lightbulb, Wifi, Camera, Sun, Gift, Plug } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { useSearch } from '../context/SearchContext';
-import { products } from '../data/products';
 
 const FEATURES = [
   { Icon: Truck,        title: 'Free Shipping',   desc: 'On orders over KSh 50' },
@@ -12,23 +11,24 @@ const FEATURES = [
   { Icon: Headphones,   title: '24/7 Support',     desc: 'Always here to help' },
 ];
 
-const CATEGORIES: { name: string; Icon: React.ElementType; bg: string; color: string }[] = [
-  { name: 'Automotive Accessories',              Icon: Car,        bg: 'bg-slate-50',    color: 'text-slate-600' },
-  { name: 'Bathroom Organizers',                 Icon: Droplets,   bg: 'bg-sky-50',      color: 'text-sky-500' },
-  { name: 'Electronics',                         Icon: Laptop,     bg: 'bg-blue-50',     color: 'text-blue-500' },
-  { name: 'Fitness Equipment',                   Icon: Dumbbell,   bg: 'bg-yellow-50',   color: 'text-yellow-600' },
-  { name: 'Furniture',                           Icon: Armchair,   bg: 'bg-amber-50',    color: 'text-amber-600' },
-  { name: 'Home & Living',                       Icon: HomeIcon,   bg: 'bg-emerald-50',  color: 'text-emerald-500' },
-  { name: 'Home Appliances',                     Icon: Plug,       bg: 'bg-indigo-50',   color: 'text-indigo-500' },
-  { name: 'Kids & Baby',                         Icon: Baby,       bg: 'bg-pink-50',     color: 'text-pink-500' },
-  { name: 'Kitchen Appliances',                  Icon: ChefHat,    bg: 'bg-orange-50',   color: 'text-orange-500' },
-  { name: 'Lighting',                            Icon: Lightbulb,  bg: 'bg-lime-50',     color: 'text-lime-600' },
-  { name: 'Networking & Communication',          Icon: Wifi,       bg: 'bg-cyan-50',     color: 'text-cyan-500' },
-  { name: 'Security Cameras & Surveillance Systems', Icon: Camera, bg: 'bg-red-50',      color: 'text-red-500' },
-  { name: 'Solar & Power Backup',                Icon: Sun,        bg: 'bg-yellow-50',   color: 'text-yellow-500' },
-  { name: 'Toys & Kids\' Gifts',                 Icon: Gift,       bg: 'bg-violet-50',   color: 'text-violet-500' },
-  { name: 'All',                                 Icon: LayoutGrid, bg: 'bg-gray-50',     color: 'text-gray-500' },
-];
+// Category icons mapping (optional, fallback to text if not found)
+const CATEGORY_ICONS: Record<string, React.ElementType> = {
+  'Automotive Accessories': Car,
+  'Bathroom Organizers': Droplets,
+  'Electronics': Laptop,
+  'Fitness Equipment': Dumbbell,
+  'Furniture': Armchair,
+  'Home & Living': HomeIcon,
+  'Home Appliances': Plug,
+  'Kids & Baby': Baby,
+  'Kitchen Appliances': ChefHat,
+  'Lighting': Lightbulb,
+  'Networking & Communication': Wifi,
+  'Security Cameras & Surveillance Systems': Camera,
+  'Solar & Power Backup': Sun,
+  'Toys & Kids\' Gifts': Gift,
+  'All': LayoutGrid,
+};
 
 const SLIDES = [
   {
@@ -70,7 +70,7 @@ const SLIDES = [
 ];
 
 export default function HomePage() {
-  const { setSelectedCategory } = useSearch();
+  const { setSelectedCategory, filteredProducts, categories, loading, error } = useSearch();
   const navigate = useNavigate();
 
   // ── Carousel state ──────────────────────────────────────────────────────
@@ -97,9 +97,12 @@ export default function HomePage() {
     navigate('/products');
   };
 
-  const bestsellers = products.filter((p) => p.badge === 'Bestseller');
-  const onSale      = products.filter((p) => p.badge === 'Sale');
-  const topRated    = [...products].sort((a, b) => b.rating - a.rating).slice(0, 8);
+  const bestsellers = filteredProducts.filter((p) => p.badge === 'Bestseller');
+  const onSale      = filteredProducts.filter((p) => p.badge === 'Sale');
+  const topRated    = [...filteredProducts].sort((a, b) => b.rating - a.rating).slice(0, 8);
+
+  if (loading) return <div className="text-center py-24">Loading...</div>;
+  if (error) return <div className="text-center py-24 text-red-500">{error}</div>;
 
   return (
     <div className="min-h-screen">
@@ -213,16 +216,19 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-8 gap-3">
-            {CATEGORIES.map(({ name, Icon, bg, color }) => (
-              <button
-                key={name}
-                onClick={() => goToCategory(name)}
-                className={`${bg} flex flex-col items-center gap-2 py-5 px-2 rounded-2xl hover:-translate-y-1 hover:shadow-md transition-all duration-200 border border-transparent hover:border-gray-200`}
-              >
-                <Icon size={28} className={color} />
-                <span className="text-xs font-semibold text-gray-700 text-center leading-tight">{name}</span>
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const Icon = CATEGORY_ICONS[cat] || LayoutGrid;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => goToCategory(cat)}
+                  className={`bg-gray-50 flex flex-col items-center gap-2 py-5 px-2 rounded-2xl hover:-translate-y-1 hover:shadow-md transition-all duration-200 border border-transparent hover:border-gray-200`}
+                >
+                  <Icon size={28} className="text-gray-500" />
+                  <span className="text-xs font-semibold text-gray-700 text-center leading-tight">{cat}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -236,9 +242,10 @@ export default function HomePage() {
               View All <ArrowRight size={15} />
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
             {[...bestsellers, ...topRated.filter((p) => !bestsellers.find((b) => b.id === p.id))]
               .slice(0, 8)
+              .filter((p) => p.image && p.image.toString().trim() !== '')
               .map((p) => <ProductCard key={p.id} product={p} />)}
           </div>
         </div>
@@ -271,7 +278,9 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-              {onSale.map((p) => <ProductCard key={p.id} product={p} />)}
+              {onSale
+                .filter((p) => p.image && p.image.toString().trim() !== '')
+                .map((p) => <ProductCard key={p.id} product={p} />)}
             </div>
           </div>
         </section>

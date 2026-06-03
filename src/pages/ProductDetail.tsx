@@ -4,19 +4,22 @@ import {
   ShoppingCart, Heart, Star, ArrowLeft,
   Check, Truck, RotateCcw, ShieldCheck,
 } from 'lucide-react';
-import { products } from '../data/products';
+import { useSearch } from '../context/SearchContext';
 import { useCart } from '../context/CartContext';
 import ProductCard from '../components/ProductCard';
 
-export default function ProductDetailPage() {
+const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { addToCart, items } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [addedMsg, setAddedMsg] = useState(false);
+  const { filteredProducts, loading, error } = useSearch();
 
-  const product = products.find((p) => p.id === Number(id));
+  const product = filteredProducts.find((p) => p.id === Number(id));
 
+  if (loading) return <div className="text-center py-24">Loading...</div>;
+  if (error) return <div className="text-center py-24 text-red-500">{error}</div>;
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
@@ -28,7 +31,7 @@ export default function ProductDetailPage() {
     );
   }
 
-  const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
+  const related = filteredProducts.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
   const inCart  = items.some((i) => i.id === product.id);
 
   const discount = product.originalPrice
@@ -193,10 +196,14 @@ export default function ProductDetailPage() {
         <section>
           <h2 className="text-2xl font-black text-navy mb-6">You May Also Like</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-            {related.map((p) => <ProductCard key={p.id} product={p} />)}
+            {related
+              .filter((p) => p.image && p.image.toString().trim() !== '')
+              .map((p) => <ProductCard key={p.id} product={p} />)}
           </div>
         </section>
       )}
     </div>
   );
 }
+
+export default ProductDetail;

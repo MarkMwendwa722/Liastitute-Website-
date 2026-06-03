@@ -4,8 +4,9 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { products } from '../data/products';
+import { PRODUCTS, CATEGORIES } from '../utils/api';
 import type { Product } from '../types';
+
 
 type SortOption = 'featured' | 'price-asc' | 'price-desc' | 'rating' | 'reviews';
 
@@ -19,6 +20,9 @@ interface SearchContextValue {
   priceRange: [number, number];
   setPriceRange: (r: [number, number]) => void;
   filteredProducts: Product[];
+  categories: string[];
+  loading: boolean;
+  error: string | null;
 }
 
 const SearchContext = createContext<SearchContextValue | null>(null);
@@ -27,7 +31,12 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   const [query, setQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState<SortOption>('featured');
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
+  const uniqueProducts = PRODUCTS.filter((p, i, arr) => arr.findIndex(x => x.image === p.image) === i);
+  const [products] = useState<Product[]>(uniqueProducts);
+  const [categories] = useState<string[]>(CATEGORIES);
+  const [loading] = useState(false);
+  const [error] = useState<string | null>(null);
 
   const filtered = products.filter((p) => {
     const matchesQuery =
@@ -59,6 +68,9 @@ export function SearchProvider({ children }: { children: ReactNode }) {
         sortBy, setSortBy,
         priceRange, setPriceRange,
         filteredProducts,
+        categories,
+        loading,
+        error,
       }}
     >
       {children}

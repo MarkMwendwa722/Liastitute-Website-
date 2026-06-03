@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Heart, Star } from 'lucide-react';
 import { useCart } from '../context/CartContext';
@@ -14,8 +15,13 @@ const badgeStyles: Record<string, string> = {
 };
 
 export default function ProductCard({ product }: Props) {
+  const [imageFailed, setImageFailed] = useState(false);
   const { addToCart, items } = useCart();
   const inCart = items.some((i) => i.id === product.id);
+  const hasImage = typeof product.image === 'string' && product.image.trim() !== '';
+
+  // Hide cards that have no image path or an image that failed to load.
+  if (!hasImage || imageFailed) return null;
 
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -37,6 +43,7 @@ export default function ProductCard({ product }: Props) {
           src={product.image}
           alt={product.name}
           loading="lazy"
+          onError={() => setImageFailed(true)}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
         {product.badge && (

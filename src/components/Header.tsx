@@ -3,9 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Search, Menu, X, Heart, ChevronDown, Flame } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
-import { categories } from '../data/products';
+import * as products from '../data/products';
 
 export default function Header() {
+  const categoriesList: string[] = (products as any).categories || [];
   const { totalItems } = useCart();
   const { query, setQuery, setSelectedCategory } = useSearch();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -128,7 +129,7 @@ export default function Header() {
             </button>
             {catMenuOpen && (
               <div className="absolute top-full left-0 mt-1 bg-white border border-gray-100 rounded-xl shadow-xl min-w-44 z-50 overflow-hidden">
-                {categories.map((cat) => (
+                {categoriesList.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => goToCategory(cat)}

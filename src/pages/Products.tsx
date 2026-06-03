@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { useSearch } from '../context/SearchContext';
-import { categories } from '../data/products';
+// categories now comes from useSearch context
 
 const SORT_OPTIONS = [
   { value: 'featured',   label: 'Featured' },
@@ -20,6 +20,9 @@ export default function ProductsPage() {
     sortBy, setSortBy,
     priceRange, setPriceRange,
     filteredProducts,
+    categories,
+    loading,
+    error,
   } = useSearch();
 
   const [searchParams] = useSearchParams();
@@ -35,7 +38,7 @@ export default function ProductsPage() {
     setQuery('');
     setSelectedCategory('All');
     setSortBy('featured');
-    setPriceRange([0, 1000]);
+    setPriceRange([0, 100000]);
   };
 
   const hasFilters =
@@ -43,7 +46,10 @@ export default function ProductsPage() {
     selectedCategory !== 'All' ||
     sortBy !== 'featured' ||
     priceRange[0] !== 0 ||
-    priceRange[1] !== 1000;
+    priceRange[1] !== 100000;
+
+  if (loading) return <div className="text-center py-24">Loading...</div>;
+  if (error) return <div className="text-center py-24 text-red-500">{error}</div>;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 pb-16 min-h-[70vh]">
@@ -103,7 +109,7 @@ export default function ProductsPage() {
               <input
                 type="number"
                 min={priceRange[0]}
-                max={9999}
+                max={100000}
                 value={priceRange[1]}
                 onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
                 className="w-20 border border-gray-200 rounded-lg px-2 py-1.5 text-sm focus:outline-none focus:border-brand"
@@ -180,7 +186,9 @@ export default function ProductsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
-              {filteredProducts.map((p) => <ProductCard key={p.id} product={p} />)}
+              {filteredProducts
+                .filter((p) => p.image && p.image.toString().trim() !== '')
+                .map((p) => <ProductCard key={p.id} product={p} />)}
             </div>
           )}
         </main>
