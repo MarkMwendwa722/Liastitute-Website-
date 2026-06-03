@@ -185,7 +185,7 @@ export default function ProductsPage() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
               {filteredProducts
                 .filter((p) => p.image && p.image.toString().trim() !== '')
                 .map((p) => <ProductCard key={p.id} product={p} />)}

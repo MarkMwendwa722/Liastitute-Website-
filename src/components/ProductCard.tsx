@@ -35,7 +35,7 @@ export default function ProductCard({ product }: Props) {
   return (
     <Link
       to={`/product/${product.id}`}
-      className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-200 flex flex-col no-underline text-inherit"
+      className="group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-200 flex flex-col no-underline text-inherit"
     >
       {/* Image */}
       <div className="relative overflow-hidden aspect-square">
@@ -59,38 +59,38 @@ export default function ProductCard({ product }: Props) {
         <button
           title="Add to wishlist"
           onClick={(e) => e.preventDefault()}
-          className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-brand shadow opacity-0 group-hover:opacity-100 transition-all duration-200"
+          className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-brand shadow opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200"
         >
           <Heart size={16} />
         </button>
       </div>
 
       {/* Info */}
-      <div className="p-4 flex flex-col gap-1.5 flex-1">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-brand">
+      <div className="p-3 sm:p-4 flex flex-col gap-1.5 flex-1">
+        <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-brand truncate">
           {product.category}
         </span>
-        <h3 className="text-sm font-semibold text-navy leading-snug line-clamp-2 m-0">
+        <h3 className="text-base sm:text-sm font-semibold text-navy leading-snug line-clamp-2 m-0">
           {product.name}
         </h3>
         <div className="flex items-center gap-1">
           <Star size={13} fill="#fbbf24" stroke="#fbbf24" />
-          <span className="text-xs font-semibold text-gray-700">{product.rating}</span>
-          <span className="text-xs text-gray-400">({product.reviews.toLocaleString()})</span>
+          <span className="text-[13px] sm:text-xs font-semibold text-gray-700">{product.rating}</span>
+          <span className="text-[13px] sm:text-xs text-gray-400">({product.reviews.toLocaleString()})</span>
         </div>
 
-        <div className="flex items-center justify-between gap-2 mt-1">
-          <div className="flex items-baseline gap-1.5">
-            <span className="font-bold text-navy">KSh {product.price.toFixed(2)}</span>
+        <div className="mt-1 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-baseline gap-1.5">
+            <span className="text-lg sm:text-base font-bold text-navy">KSh {product.price.toFixed(2)}</span>
             {product.originalPrice && (
-              <span className="text-xs text-gray-400 line-through">
+              <span className="text-sm sm:text-xs text-gray-400 line-through">
                 KSh {product.originalPrice.toFixed(2)}
               </span>
             )}
           </div>
           <button
             onClick={handleAdd}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+            className={`w-full sm:w-auto justify-center sm:justify-start flex items-center gap-1 px-3 py-2 sm:py-1.5 rounded-lg text-sm sm:text-xs font-bold transition-colors ${
               inCart
                 ? 'bg-success text-white hover:bg-success-dark'
                 : 'bg-brand text-white hover:bg-brand-dark'

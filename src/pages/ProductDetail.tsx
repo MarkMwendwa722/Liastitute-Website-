@@ -65,7 +65,7 @@ const ProductDetail = () => {
       {/* Main */}
       <div className="grid md:grid-cols-2 gap-12 mb-16">
         {/* Image */}
-        <div className="sticky top-32 self-start">
+        <div className="md:sticky md:top-32 self-start">
           <div className="relative rounded-2xl overflow-hidden aspect-square bg-gray-50">
             <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
             {product.badge && (
@@ -195,7 +195,7 @@ const ProductDetail = () => {
       {related.length > 0 && (
         <section>
           <h2 className="text-2xl font-black text-navy mb-6">You May Also Like</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
             {related
               .filter((p) => p.image && p.image.toString().trim() !== '')
               .map((p) => <ProductCard key={p.id} product={p} />)}

@@ -242,7 +242,7 @@ export default function HomePage() {
               View All <ArrowRight size={15} />
             </Link>
           </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
             {[...bestsellers, ...topRated.filter((p) => !bestsellers.find((b) => b.id === p.id))]
               .slice(0, 8)
               .filter((p) => p.image && p.image.toString().trim() !== '')
@@ -277,7 +277,7 @@ export default function HomePage() {
                 View All <ArrowRight size={15} />
               </Link>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
               {onSale
                 .filter((p) => p.image && p.image.toString().trim() !== '')
                 .map((p) => <ProductCard key={p.id} product={p} />)}

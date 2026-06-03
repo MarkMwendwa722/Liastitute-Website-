@@ -54,9 +54,9 @@ export default function CartPage() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="grid grid-cols-[80px_1fr_auto] gap-4 px-5 py-5 border-b border-gray-100 last:border-0 items-center"
+              className="grid grid-cols-1 sm:grid-cols-[80px_1fr_auto] gap-4 px-5 py-5 border-b border-gray-100 last:border-0 items-start sm:items-center"
             >
-              <Link to={`/product/${item.id}`} className="block rounded-xl overflow-hidden">
+              <Link to={`/product/${item.id}`} className="block rounded-xl overflow-hidden w-20 h-20">
                 <img src={item.image} alt={item.name} className="w-20 h-20 object-cover block" />
               </Link>
 
@@ -69,9 +69,40 @@ export default function CartPage() {
                   {item.name}
                 </Link>
                 <span className="text-xs text-gray-400">KSh {item.price.toFixed(2)} each</span>
+
+                <div className="sm:hidden mt-2 flex items-center justify-between gap-3">
+                  <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      className="w-8 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors"
+                    >
+                      <Minus size={13} />
+                    </button>
+                    <span className="w-9 text-center text-sm font-bold">{item.quantity}</span>
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      className="w-8 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors"
+                    >
+                      <Plus size={13} />
+                    </button>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-bold text-navy">
+                      KSh {(item.price * item.quantity).toFixed(2)}
+                    </span>
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="text-gray-300 hover:text-brand transition-colors"
+                      title="Remove"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                </div>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="hidden sm:flex items-center gap-3">
                 {/* Qty */}
                 <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
                   <button
@@ -104,7 +135,7 @@ export default function CartPage() {
         </div>
 
         {/* Summary */}
-        <div className="bg-white rounded-2xl border border-gray-100 p-6 sticky top-32">
+        <div className="bg-white rounded-2xl border border-gray-100 p-6 lg:sticky lg:top-32">
           <h3 className="text-lg font-black text-navy mb-5">Order Summary</h3>
 
           <div className="space-y-3 text-sm">

@@ -120,12 +120,12 @@ export default function CheckoutPage() {
             ))}
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-7">
+          <div className="bg-white rounded-2xl border border-gray-100 p-4 sm:p-7">
             {/* Step 0: Shipping */}
             {step === 0 && (
               <div>
                 <h2 className="text-xl font-black text-navy mb-6">Shipping Information</h2>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className={labelClass}>First Name *</label>
                     <input name="firstName" value={shipping.firstName} onChange={handleSF} placeholder="John" className={inputClass} />
@@ -134,15 +134,15 @@ export default function CheckoutPage() {
                     <label className={labelClass}>Last Name *</label>
                     <input name="lastName" value={shipping.lastName} onChange={handleSF} placeholder="Doe" className={inputClass} />
                   </div>
-                  <div className="col-span-2">
+                  <div className="sm:col-span-2">
                     <label className={labelClass}>Email Address *</label>
                     <input type="email" name="email" value={shipping.email} onChange={handleSF} placeholder="john@example.com" className={inputClass} />
                   </div>
-                  <div className="col-span-2">
+                  <div className="sm:col-span-2">
                     <label className={labelClass}>Phone Number *</label>
                     <input name="phone" value={shipping.phone} onChange={handleSF} placeholder="+254 700 000 000" className={inputClass} />
                   </div>
-                  <div className="col-span-2">
+                  <div className="sm:col-span-2">
                     <label className={labelClass}>Street Address *</label>
                     <input name="address" value={shipping.address} onChange={handleSF} placeholder="123 Main Street" className={inputClass} />
                   </div>
@@ -154,7 +154,7 @@ export default function CheckoutPage() {
                     <label className={labelClass}>ZIP Code</label>
                     <input name="zip" value={shipping.zip} onChange={handleSF} placeholder="00100" className={inputClass} />
                   </div>
-                  <div className="col-span-2">
+                  <div className="sm:col-span-2">
                     <label className={labelClass}>Country</label>
                     <select name="country" value={shipping.country} onChange={handleSF} className={inputClass}>
                       {['Kenya','Uganda','Tanzania','Ethiopia','United States','United Kingdom','Other'].map((c) => (
@@ -198,12 +198,12 @@ export default function CheckoutPage() {
                 </div>
 
                 {paymentMethod === 'card' && (
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="col-span-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="sm:col-span-2">
                       <label className={labelClass}>Card Number</label>
                       <input name="cardNumber" value={payment.cardNumber} onChange={handlePF} placeholder="1234 5678 9012 3456" maxLength={19} className={inputClass} />
                     </div>
-                    <div className="col-span-2">
+                    <div className="sm:col-span-2">
                       <label className={labelClass}>Cardholder Name</label>
                       <input name="cardName" value={payment.cardName} onChange={handlePF} placeholder="John Doe" className={inputClass} />
                     </div>
@@ -238,7 +238,7 @@ export default function CheckoutPage() {
                   </div>
                 )}
 
-                <div className="flex gap-3 mt-6">
+                <div className="flex flex-col sm:flex-row gap-3 mt-6">
                   <button onClick={() => setStep(0)} className="px-6 py-3 border border-gray-200 rounded-xl text-gray-600 font-semibold hover:border-gray-300 transition-colors">
                     ← Back
                   </button>
@@ -291,7 +291,7 @@ export default function CheckoutPage() {
                   ))}
                 </div>
 
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button onClick={() => setStep(1)} className="px-6 py-3 border border-gray-200 rounded-xl text-gray-600 font-semibold hover:border-gray-300 transition-colors">
                     ← Back
                   </button>
@@ -308,7 +308,7 @@ export default function CheckoutPage() {
         </div>
 
         {/* Right: Summary */}
-        <div className="bg-white rounded-2xl border border-gray-100 p-6 sticky top-32">
+        <div className="bg-white rounded-2xl border border-gray-100 p-6 lg:sticky lg:top-32">
           <h3 className="text-base font-black text-navy mb-4">Order Summary</h3>
           <div className="space-y-2 mb-4">
             {items.map((item) => (
