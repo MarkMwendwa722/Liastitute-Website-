@@ -68,9 +68,9 @@ export default function Footer() {
           <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-4">Contact Us</h4>
           <ul className="space-y-3 text-sm mb-5">
             {[
-              { Icon: MapPin, text: '123 Commerce St, Nairobi, Kenya' },
-              { Icon: Phone, text: '+254 700 000 000' },
-              { Icon: Mail, text: 'support@liastute.com' },
+              { Icon: MapPin, text: 'Comfort 5, First Floor, Shop F8 Nairobi, Kenya' },
+              { Icon: Phone, text: '+254 712 775 426' },
+              { Icon: Mail, text: ' info@liastuteenterprises.co.ke' },
             ].map(({ Icon, text }) => (
               <li key={text} className="flex items-start gap-2">
                 <Icon size={14} className="text-brand mt-0.5 shrink-0" />

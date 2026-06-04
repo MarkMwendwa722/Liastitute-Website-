@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
 import Header from './components/Header';
@@ -10,9 +11,20 @@ import CartPage from './pages/Cart';
 import CheckoutPage from './pages/Checkout';
 import NotFoundPage from './pages/NotFound';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <CartProvider>
         <SearchProvider>
           <div className="min-h-screen flex flex-col bg-gray-50">
