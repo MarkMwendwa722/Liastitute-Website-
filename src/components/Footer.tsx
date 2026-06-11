@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import { Share2, MessageCircle, Camera, Play, Mail, Phone, MapPin } from 'lucide-react';
+import { useSearch } from '../context/SearchContext';
 
 export default function Footer() {
+  const { categories } = useSearch();
+  const footerCategories = categories.filter((cat) => cat !== 'All').slice(0, 6);
+
   return (
     <footer className="bg-navy text-gray-400 mt-auto">
       <div className="max-w-7xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
@@ -53,9 +57,9 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-4">Categories</h4>
           <ul className="space-y-2 text-sm">
-            {['Electronics', 'Clothing', 'Home & Garden', 'Sports', 'Books', 'Beauty'].map((cat) => (
+            {footerCategories.map((cat) => (
               <li key={cat}>
-                <Link to="/products" className="text-gray-400 hover:text-brand transition-colors no-underline">
+                <Link to={`/products?cat=${encodeURIComponent(cat)}`} className="text-gray-400 hover:text-brand transition-colors no-underline">
                   {cat}
                 </Link>
               </li>
@@ -68,7 +72,7 @@ export default function Footer() {
           <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-4">Contact Us</h4>
           <ul className="space-y-3 text-sm mb-5">
             {[
-              { Icon: MapPin, text: 'Comfort 5, First Floor, Shop F8 Nairobi, Kenya' },
+              { Icon: MapPin, text: 'Gaberone plaza, third floor shop T3 Nairobi, Kenya' },
               { Icon: Phone, text: '+254 712 775 426' },
               { Icon: Mail, text: ' info@liastuteenterprises.co.ke' },
             ].map(({ Icon, text }) => (

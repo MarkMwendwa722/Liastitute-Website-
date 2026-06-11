@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Search, Menu, X, Heart, ChevronDown, Flame } from 'lucide-react';
+import { ShoppingCart, Search, Menu, X, Heart, ChevronDown, ChevronRight, Flame } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
+import { getDisplayCategory } from '../utils/api';
 
 export default function Header() {
   const { totalItems } = useCart();
@@ -17,7 +18,7 @@ export default function Header() {
     ? filteredProducts
         .filter((product) => {
           const hasImage = typeof product.image === 'string' && product.image.trim() !== '';
-          const haystack = `${product.name} ${product.category} ${product.description}`.toLowerCase();
+          const haystack = `${product.name} ${product.category} ${getDisplayCategory(product.category)} ${product.description}`.toLowerCase();
           return hasImage && haystack.includes(trimmedQuery);
         })
         .slice(0, 5)
@@ -186,7 +187,7 @@ export default function Header() {
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-semibold text-navy truncate">{product.name}</p>
-                        <p className="text-xs text-gray-500 truncate">{product.category}</p>
+                        <p className="text-xs text-gray-500 truncate">{getDisplayCategory(product.category)}</p>
                       </div>
                       <span className="text-sm font-bold text-navy shrink-0">
                         KSh {product.price.toFixed(2)}
@@ -223,14 +224,15 @@ export default function Header() {
               All Categories <ChevronDown size={15} />
             </button>
             {catMenuOpen && (
-              <div className="mt-1 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden md:absolute md:top-full md:left-0 md:min-w-52">
+              <div className="mt-1 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden md:absolute md:top-full md:left-0 md:min-w-72">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => goToCategory(cat)}
-                    className="block w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand transition-colors"
+                    className="flex w-full items-center justify-between gap-4 px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50 hover:text-brand transition-colors"
                   >
-                    {cat}
+                    <span>{cat}</span>
+                    {cat !== 'All' && <ChevronRight size={14} className="text-gray-400" />}
                   </button>
                 ))}
               </div>
@@ -240,6 +242,7 @@ export default function Header() {
           {[
             { label: 'Home', to: '/' },
             { label: 'Shop', to: '/products' },
+            { label: 'Email', to: '/send-email' },
           ].map((link) => (
             <Link
               key={link.to}
@@ -251,7 +254,12 @@ export default function Header() {
             </Link>
           ))}
 
-          {['Electronics', 'Kitchen Appliances', 'Home Appliances', 'Automotive Accessories', 'Lighting'].map((cat) => (
+          {[
+            'Electronics & Entertainment',
+            'Kitchen & Commercial Equipment',
+            'Home Appliances Kenya',
+            'Tools, Electrical & Automotive',
+          ].map((cat) => (
             <button
               key={cat}
               onClick={() => goToCategory(cat)}

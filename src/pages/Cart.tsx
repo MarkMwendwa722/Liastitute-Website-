@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { getDisplayCategory } from '../utils/api';
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, totalPrice, totalItems, clearCart } = useCart();
@@ -61,7 +62,7 @@ export default function CartPage() {
               </Link>
 
               <div className="flex flex-col gap-1 min-w-0">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-brand">{item.category}</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-brand">{getDisplayCategory(item.category)}</span>
                 <Link
                   to={`/product/${item.id}`}
                   className="text-sm font-semibold text-navy no-underline hover:text-brand line-clamp-2 leading-snug"
@@ -171,7 +172,7 @@ export default function CartPage() {
             to="/checkout"
             className="block w-full bg-brand hover:bg-brand-dark text-white text-center py-3.5 rounded-xl font-bold transition-colors no-underline mb-3"
           >
-            Proceed to Checkout
+            Make an Order
           </Link>
           <p className="text-center text-xs text-gray-400 mb-4">🔒 Secure Checkout — SSL Encrypted</p>
 

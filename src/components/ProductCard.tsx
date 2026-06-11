@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Heart, Star } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { getDisplayCategory } from '../utils/api';
 import type { Product } from '../types';
 
 interface Props {
@@ -19,6 +20,7 @@ export default function ProductCard({ product }: Props) {
   const { addToCart, items } = useCart();
   const inCart = items.some((i) => i.id === product.id);
   const hasImage = typeof product.image === 'string' && product.image.trim() !== '';
+  const displayCategory = getDisplayCategory(product.category);
 
   // Hide cards that have no image path or an image that failed to load.
   if (!hasImage || imageFailed) return null;
@@ -68,7 +70,7 @@ export default function ProductCard({ product }: Props) {
       {/* Info */}
       <div className="p-3 sm:p-4 flex flex-col gap-1.5 flex-1">
         <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-brand truncate">
-          {product.category}
+          {displayCategory}
         </span>
         <h3 className="text-base sm:text-sm font-semibold text-navy leading-snug line-clamp-2 m-0">
           {product.name}

@@ -7,6 +7,7 @@ import {
 import { useSearch } from '../context/SearchContext';
 import { useCart } from '../context/CartContext';
 import ProductCard from '../components/ProductCard';
+import { getDisplayCategory } from '../utils/api';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -33,6 +34,7 @@ const ProductDetail = () => {
 
   const related = filteredProducts.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
   const inCart  = items.some((i) => i.id === product.id);
+  const displayCategory = getDisplayCategory(product.category);
 
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -42,6 +44,11 @@ const ProductDetail = () => {
     for (let i = 0; i < quantity; i++) addToCart(product);
     setAddedMsg(true);
     setTimeout(() => setAddedMsg(false), 2500);
+  };
+
+  const handleMakeOrder = () => {
+    for (let i = 0; i < quantity; i++) addToCart(product);
+    navigate('/checkout');
   };
 
   return (
@@ -57,7 +64,7 @@ const ProductDetail = () => {
         <span className="text-gray-300">›</span>
         <Link to="/products" className="text-gray-500 hover:text-brand no-underline">Products</Link>
         <span className="text-gray-300">›</span>
-        <span className="text-gray-500">{product.category}</span>
+        <span className="text-gray-500">{displayCategory}</span>
         <span className="text-gray-300">›</span>
         <span className="text-gray-700 font-medium">{product.name}</span>
       </div>
@@ -88,7 +95,7 @@ const ProductDetail = () => {
         {/* Info */}
         <div className="flex flex-col gap-5">
           <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-brand">{product.category}</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand">{displayCategory}</span>
             <h1 className="text-3xl font-black text-navy mt-1 leading-tight">{product.name}</h1>
           </div>
 
@@ -169,6 +176,13 @@ const ProductDetail = () => {
             </button>
           </div>
 
+          <button
+            onClick={handleMakeOrder}
+            className="w-full bg-navy hover:bg-navy-light text-white py-3.5 rounded-xl font-bold transition-colors"
+          >
+            Make an Order
+          </button>
+
           {inCart && !addedMsg && (
             <Link to="/cart" className="text-brand font-semibold text-sm no-underline hover:underline">
               View in Cart →
@@ -178,7 +192,7 @@ const ProductDetail = () => {
           {/* Guarantees */}
           <div className="border border-gray-100 rounded-xl p-4 flex flex-col gap-2.5 bg-gray-50">
             {[
-              { Icon: Truck,        text: 'Free shipping on orders over KSh 50' },
+              { Icon: Truck,        text: 'Free shipping on orders within CBD' },
               { Icon: RotateCcw,    text: '30-day easy returns' },
               { Icon: ShieldCheck,  text: 'Secure checkout — SSL encrypted' },
             ].map(({ Icon, text }) => (

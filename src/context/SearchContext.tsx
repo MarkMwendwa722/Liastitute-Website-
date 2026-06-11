@@ -5,7 +5,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { PRODUCTS, CATEGORIES } from '../utils/api';
+import { PRODUCTS, CATEGORIES, getDisplayCategory, productMatchesCategory } from '../utils/api';
 import type { Product } from '../types';
 
 
@@ -77,9 +77,9 @@ export function SearchProvider({ children }: { children: ReactNode }) {
       query === '' ||
       p.name.toLowerCase().includes(query.toLowerCase()) ||
       p.description.toLowerCase().includes(query.toLowerCase()) ||
-      p.category.toLowerCase().includes(query.toLowerCase());
-    const matchesCategory =
-      selectedCategory === 'All' || p.category === selectedCategory;
+      p.category.toLowerCase().includes(query.toLowerCase()) ||
+      getDisplayCategory(p.category).toLowerCase().includes(query.toLowerCase());
+    const matchesCategory = productMatchesCategory(p.category, selectedCategory);
     const matchesPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
     return matchesQuery && matchesCategory && matchesPrice;
   });
