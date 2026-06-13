@@ -1,13 +1,23 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Search, Menu, X, Heart, ChevronDown, ChevronRight, Flame } from 'lucide-react';
-import { useCart } from '../context/CartContext';
-import { useSearch } from '../context/SearchContext';
-import { getDisplayCategory } from '../utils/api';
+import { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  ShoppingCart,
+  Search,
+  Menu,
+  X,
+  Heart,
+  ChevronDown,
+  ChevronRight,
+  Flame,
+} from "lucide-react";
+import { useCart } from "../context/CartContext";
+import { useSearch } from "../context/SearchContext";
+import { getDisplayCategory } from "../utils/api";
 
 export default function Header() {
   const { totalItems } = useCart();
-  const { query, setQuery, setSelectedCategory, categories, filteredProducts } = useSearch();
+  const { query, setQuery, setSelectedCategory, categories, filteredProducts } =
+    useSearch();
   const [menuOpen, setMenuOpen] = useState(false);
   const [catMenuOpen, setCatMenuOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
@@ -17,8 +27,10 @@ export default function Header() {
   const searchSuggestions = trimmedQuery
     ? filteredProducts
         .filter((product) => {
-          const hasImage = typeof product.image === 'string' && product.image.trim() !== '';
-          const haystack = `${product.name} ${product.category} ${getDisplayCategory(product.category)} ${product.description}`.toLowerCase();
+          const hasImage =
+            typeof product.image === "string" && product.image.trim() !== "";
+          const haystack =
+            `${product.name} ${product.category} ${getDisplayCategory(product.category)} ${product.description}`.toLowerCase();
           return hasImage && haystack.includes(trimmedQuery);
         })
         .slice(0, 5)
@@ -26,14 +38,18 @@ export default function Header() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate(query.trim() ? `/products?q=${encodeURIComponent(query.trim())}` : '/products');
+    navigate(
+      query.trim()
+        ? `/products?q=${encodeURIComponent(query.trim())}`
+        : "/products",
+    );
   };
 
   const goToCategory = (cat: string) => {
     setSelectedCategory(cat);
     setCatMenuOpen(false);
     setMenuOpen(false);
-    navigate('/products');
+    navigate("/products");
   };
 
   const goToProduct = (id: number) => {
@@ -48,8 +64,8 @@ export default function Header() {
         setSearchFocused(false);
       }
     };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
   }, []);
 
   return (
@@ -61,7 +77,11 @@ export default function Header() {
             {/* Logo */}
             <Link to="/" className="flex items-center shrink-0 no-underline">
               <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-brand shadow-md">
-                <img src="/logo.jpeg" alt="Liastute Entreprises" className="w-full h-full object-cover" />
+                <img
+                  src="/logo.jpeg"
+                  alt="Liastute Entreprises"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </Link>
 
@@ -70,7 +90,9 @@ export default function Header() {
               <form onSubmit={handleSearch}>
                 <div
                   className={`flex items-center rounded-full overflow-hidden border-2 transition-colors ${
-                    searchFocused ? 'border-brand bg-white' : 'border-transparent bg-gray-100'
+                    searchFocused
+                      ? "border-brand bg-white"
+                      : "border-transparent bg-gray-100"
                   }`}
                 >
                   <Search size={18} className="ml-4 text-gray-400 shrink-0" />
@@ -85,7 +107,7 @@ export default function Header() {
                   {query && (
                     <button
                       type="button"
-                      onClick={() => setQuery('')}
+                      onClick={() => setQuery("")}
                       className="flex items-center px-2 text-gray-400 hover:text-gray-600"
                     >
                       <X size={15} />
@@ -116,7 +138,7 @@ export default function Header() {
                 <ShoppingCart size={22} />
                 {totalItems > 0 && (
                   <span className="absolute -top-0.5 -right-0.5 bg-brand text-white text-[10px] font-bold w-[18px] h-[18px] rounded-full flex items-center justify-center border-2 border-white">
-                    {totalItems > 99 ? '99+' : totalItems}
+                    {totalItems > 99 ? "99+" : totalItems}
                   </span>
                 )}
               </Link>
@@ -136,7 +158,9 @@ export default function Header() {
             <form onSubmit={handleSearch}>
               <div
                 className={`flex items-center rounded-full overflow-hidden border-2 transition-colors ${
-                  searchFocused ? 'border-brand bg-white' : 'border-transparent bg-gray-100'
+                  searchFocused
+                    ? "border-brand bg-white"
+                    : "border-transparent bg-gray-100"
                 }`}
               >
                 <Search size={17} className="ml-3 text-gray-400 shrink-0" />
@@ -151,7 +175,7 @@ export default function Header() {
                 {query && (
                   <button
                     type="button"
-                    onClick={() => setQuery('')}
+                    onClick={() => setQuery("")}
                     className="flex items-center px-2 text-gray-400 hover:text-gray-600"
                   >
                     <X size={15} />
@@ -183,11 +207,19 @@ export default function Header() {
                       className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors"
                     >
                       <div className="w-12 h-12 rounded-xl overflow-hidden bg-gray-100 shrink-0">
-                        <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="text-sm font-semibold text-navy truncate">{product.name}</p>
-                        <p className="text-xs text-gray-500 truncate">{getDisplayCategory(product.category)}</p>
+                        <p className="text-sm font-semibold text-navy truncate">
+                          {product.name}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">
+                          {getDisplayCategory(product.category)}
+                        </p>
                       </div>
                       <span className="text-sm font-bold text-navy shrink-0">
                         KSh {product.price.toFixed(2)}
@@ -200,7 +232,11 @@ export default function Header() {
                   onClick={() => {
                     setMenuOpen(false);
                     setSearchFocused(false);
-                    navigate(trimmedQuery ? `/products?q=${encodeURIComponent(query.trim())}` : '/products');
+                    navigate(
+                      trimmedQuery
+                        ? `/products?q=${encodeURIComponent(query.trim())}`
+                        : "/products",
+                    );
                   }}
                   className="w-full border-t border-gray-100 px-4 py-3 text-sm font-semibold text-brand hover:bg-blue-50 transition-colors"
                 >
@@ -213,7 +249,7 @@ export default function Header() {
       </div>
 
       {/* Nav */}
-      <nav className={`bg-navy ${menuOpen ? 'block' : 'hidden md:block'}`}>
+      <nav className={`bg-navy ${menuOpen ? "block" : "hidden md:block"}`}>
         <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col md:flex-row md:flex-wrap md:items-center gap-1">
           {/* Categories dropdown */}
           <div className="relative w-full md:w-auto">
@@ -232,7 +268,9 @@ export default function Header() {
                     className="flex w-full items-center justify-between gap-4 px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50 hover:text-brand transition-colors"
                   >
                     <span>{cat}</span>
-                    {cat !== 'All' && <ChevronRight size={14} className="text-gray-400" />}
+                    {cat !== "All" && (
+                      <ChevronRight size={14} className="text-gray-400" />
+                    )}
                   </button>
                 ))}
               </div>
@@ -240,9 +278,8 @@ export default function Header() {
           </div>
 
           {[
-            { label: 'Home', to: '/' },
-            { label: 'Shop', to: '/products' },
-            { label: 'Email', to: '/send-email' },
+            { label: "Home", to: "/" },
+            { label: "Shop", to: "/products" },
           ].map((link) => (
             <Link
               key={link.to}
@@ -255,10 +292,10 @@ export default function Header() {
           ))}
 
           {[
-            'Electronics & Entertainment',
-            'Kitchen & Commercial Equipment',
-            'Home Appliances Kenya',
-            'Tools, Electrical & Automotive',
+            "Electronics & Entertainment",
+            "Kitchen & Commercial Equipment",
+            "Home Appliances Kenya",
+            "Tools, Electrical & Automotive",
           ].map((cat) => (
             <button
               key={cat}
