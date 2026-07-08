@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
 import Header from './components/Header';
@@ -24,7 +24,7 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <CartProvider>
         <SearchProvider>
@@ -45,6 +45,6 @@ export default function App() {
           </div>
         </SearchProvider>
       </CartProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

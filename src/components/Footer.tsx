@@ -72,7 +72,7 @@ export default function Footer() {
           <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-4">Contact Us</h4>
           <ul className="space-y-3 text-sm mb-5">
             {[
-              { Icon: MapPin, text: 'Gaberone plaza, third floor shop T3 Nairobi, Kenya' },
+              { Icon: MapPin, text: 'Gaberone plaza, third floor shop T1 Nairobi, Kenya' },
               { Icon: Phone, text: '+254 712 775 426' },
               { Icon: Mail, text: ' info@liastuteenterprises.co.ke' },
             ].map(({ Icon, text }) => (
