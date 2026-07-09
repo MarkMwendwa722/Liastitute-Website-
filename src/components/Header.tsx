@@ -279,7 +279,9 @@ export default function Header() {
 
           {[
             { label: "Home", to: "/" },
+            { label: "About", to: "/about" },
             { label: "Shop", to: "/products" },
+            { label: "Contact", to: "/contact" },
           ].map((link) => (
             <Link
               key={link.to}

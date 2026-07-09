@@ -39,7 +39,9 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             {[
               { label: 'Home', to: '/' },
+              { label: 'About Us', to: '/about' },
               { label: 'All Products', to: '/products' },
+              { label: 'Contact Us', to: '/contact' },
               { label: 'Shopping Cart', to: '/cart' },
               { label: 'My Account', to: '/account' },
               { label: 'Wishlist', to: '/wishlist' },

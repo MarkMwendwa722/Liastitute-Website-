@@ -5,6 +5,8 @@ import { SearchProvider } from './context/SearchContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/Home';
+import AboutPage from './pages/About';
+import ContactPage from './pages/Contact';
 import ProductsPage from './pages/Products';
 import ProductDetailPage from './pages/ProductDetail';
 import CartPage from './pages/Cart';
@@ -33,6 +35,8 @@ export default function App() {
             <main className="flex-1">
               <Routes>
                 <Route path="/"           element={<HomePage />} />
+                <Route path="/about"      element={<AboutPage />} />
+                <Route path="/contact"    element={<ContactPage />} />
                 <Route path="/products"   element={<ProductsPage />} />
                 <Route path="/product/:id" element={<ProductDetailPage />} />
                 <Route path="/cart"       element={<CartPage />} />
