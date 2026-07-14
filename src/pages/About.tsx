@@ -34,21 +34,21 @@ export default function AboutPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 pb-16">
       <Seo
-        title="About Liastute"
-        description="Learn about Liastute, a Kenya-based store focused on practical, reliable products for homes, work, and everyday life."
+        title="About Lijustore"
+        description="Learn about Lijustore, a Kenya-based store focused on practical, reliable products for homes, work, and everyday life."
         canonicalPath="/about"
       />
       <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-center">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-brand">
             <Users size={16} />
-            About Liastute
+            About Lijustore
           </span>
           <h1 className="mt-4 text-4xl font-black tracking-tight text-navy sm:text-5xl">
             Practical products for homes, work, and everyday life.
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-gray-600">
-            Liastute is built around the idea that shopping should be straightforward: clear choices,
+            Lijustore is built around the idea that shopping should be straightforward: clear choices,
             fair value, and products that solve real problems. From kitchen equipment to electronics,
             we aim to make it easy to find items that fit daily needs without the noise.
           </p>

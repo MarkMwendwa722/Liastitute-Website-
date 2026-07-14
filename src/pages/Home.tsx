@@ -116,8 +116,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <Seo
-        title="Liastute Kenya | Home Appliances, Electronics, Furniture and More"
-        description="Shop practical home appliances, electronics, kitchen equipment, furniture, tools, and daily essentials at Liastute Kenya."
+        title="Lijustore Kenya | Home Appliances, Electronics, Furniture and More"
+        description="Shop practical home appliances, electronics, kitchen equipment, furniture, tools, and daily essentials at Lijustore Kenya."
         canonicalPath="/"
       />
       {/* ── Hero Carousel ─────────────────────────────────────────────────── */}

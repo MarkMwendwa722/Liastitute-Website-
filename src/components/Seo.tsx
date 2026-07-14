@@ -9,7 +9,7 @@ interface SeoProps {
   image?: string;
 }
 
-const SITE_NAME = 'Liastute';
+const SITE_NAME = 'Lijustore';
 const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://lijustore.co.ke';
 
 export default function Seo({

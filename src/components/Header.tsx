@@ -79,7 +79,7 @@ export default function Header() {
               <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-brand shadow-md">
                 <img
                   src="/logo.jpeg"
-                  alt="Liastute Entreprises"
+                  alt="Lijustore"
                   className="w-full h-full object-cover"
                 />
               </div>

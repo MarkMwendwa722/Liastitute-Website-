@@ -95,7 +95,7 @@ export default function SendEmailPage() {
     <div className="max-w-4xl mx-auto px-4 py-10 pb-16">
       <Seo
         title="Send Order Email"
-        description="Submit your Liastute order details through the secure email workflow."
+        description="Submit your Lijustore order details through the secure email workflow."
         canonicalPath="/send-email"
         noindex
         nofollow

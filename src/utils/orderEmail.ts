@@ -17,7 +17,7 @@ export interface OrderEmailData {
 }
 
 export function buildOrderEmailSubject(orderNumber: string) {
-  return `New Liastute Order ${orderNumber}`;
+  return `New Lijustore Order ${orderNumber}`;
 }
 
 export function buildOrderEmailHtml(order: OrderEmailData) {

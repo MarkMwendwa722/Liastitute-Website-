@@ -6,7 +6,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 const EMAIL_ENDPOINT =
   import.meta.env.VITE_RESEND_EMAIL_ENDPOINT ||
   `${API_BASE_URL.replace(/\/$/, '')}/api/send-email`;
-const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'info@liastuteenterprises.co.ke';
+const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'info@lijustoreenterprises.co.ke';
 const RESEND_FROM_EMAIL = import.meta.env.VITE_RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 
 const CONTACT_ITEMS = [
@@ -23,7 +23,7 @@ const CONTACT_ITEMS = [
   {
     icon: Mail,
     title: 'Email us',
-    text: 'info@liastuteenterprises.co.ke',
+    text: 'info@lijustoreenterprises.co.ke',
   },
   {
     icon: Clock,
@@ -40,8 +40,8 @@ export default function ContactPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 pb-16">
       <Seo
-        title="Contact Liastute"
-        description="Contact Liastute for product questions, order support, or general inquiries by phone, email, or the website form."
+        title="Contact Lijustore"
+        description="Contact Lijustore for product questions, order support, or general inquiries by phone, email, or the website form."
         canonicalPath="/contact"
       />
       <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">

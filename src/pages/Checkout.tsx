@@ -137,7 +137,7 @@ export default function CheckoutPage() {
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
         <Seo
           title="Checkout"
-          description="Complete your Liastute order and choose a payment method."
+          description="Complete your Lijustore order and choose a payment method."
           canonicalPath="/checkout"
           noindex
           nofollow
@@ -160,7 +160,7 @@ export default function CheckoutPage() {
       <div className="min-h-[70vh] flex items-center justify-center px-4 py-12">
         <Seo
           title="Order Received"
-          description="Your Liastute order was received successfully."
+          description="Your Lijustore order was received successfully."
           canonicalPath="/checkout"
           noindex
           nofollow
@@ -174,7 +174,7 @@ export default function CheckoutPage() {
           </h2>
           <p className="text-brand font-bold mb-4">Order #{orderNumber}</p>
           <p className="text-gray-500 text-sm mb-4">
-            Thank you, <strong>{details.name}</strong>. Someone from Liastute
+            Thank you, <strong>{details.name}</strong>. Someone from Lijustore
             will reach out to you on <strong>{details.phone}</strong> to discuss
             delivery details, how your parcel will arrive, and anything else you
             need to know.
@@ -241,7 +241,7 @@ export default function CheckoutPage() {
     >
       <Seo
         title="Checkout"
-        description="Complete your Liastute order and choose a payment method."
+        description="Complete your Lijustore order and choose a payment method."
         canonicalPath="/checkout"
         noindex
         nofollow

@@ -6,7 +6,7 @@ export default function NotFoundPage() {
     <div className="min-h-[70vh] flex items-center justify-center px-4">
       <Seo
         title="Page Not Found"
-        description="The page you are looking for does not exist on Liastute."
+        description="The page you are looking for does not exist on Lijustore."
         canonicalPath="/404"
         noindex
         nofollow

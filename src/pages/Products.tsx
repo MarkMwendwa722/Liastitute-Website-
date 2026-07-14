@@ -58,7 +58,7 @@ export default function ProductsPage() {
     <div className="max-w-7xl mx-auto px-4 py-8 pb-16 min-h-[70vh]">
       <Seo
         title={hasSearchFilters ? 'Filtered Products' : 'Shop Products'}
-        description="Browse Liastute products by category, price, rating, and search terms."
+        description="Browse Lijustore products by category, price, rating, and search terms."
         canonicalPath="/products"
         noindex={hasSearchFilters}
       />

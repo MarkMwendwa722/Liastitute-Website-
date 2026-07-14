@@ -27,7 +27,7 @@ const ProductDetail = () => {
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
         <Seo
           title="Product Not Found"
-          description="The requested product could not be found on Liastute."
+          description="The requested product could not be found on Lijustore."
           canonicalPath={`/product/${id ?? ''}`}
           noindex
         />

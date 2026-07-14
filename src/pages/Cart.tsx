@@ -16,7 +16,7 @@ export default function CartPage() {
       <div className="min-h-[60vh] flex items-center justify-center">
         <Seo
           title="Your Cart"
-          description="Review the items in your Liastute cart before checkout."
+          description="Review the items in your Lijustore cart before checkout."
           canonicalPath="/cart"
           noindex
           nofollow
@@ -40,7 +40,7 @@ export default function CartPage() {
     <div className="max-w-7xl mx-auto px-4 py-8 pb-16">
       <Seo
         title="Your Cart"
-        description="Review the items in your Liastute cart before checkout."
+        description="Review the items in your Lijustore cart before checkout."
         canonicalPath="/cart"
         noindex
         nofollow

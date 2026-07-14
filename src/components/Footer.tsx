@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand shadow-md">
-              <img src="/logo.jpeg" alt="Liastute Entreprises" className="w-full h-full object-cover" />
+              <img src="/logo.jpeg" alt="Lijustore" className="w-full h-full object-cover" />
             </div>
           </div>
           <p className="text-sm leading-relaxed text-gray-400 mb-5 max-w-xs">
@@ -132,7 +132,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-3">
           <p className="text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} Liastute. All rights reserved.
+            &copy; {new Date().getFullYear()} Lijustore. All rights reserved.
           </p>
           <div className="flex gap-2">
             {['VISA', 'Mastercard', 'M-Pesa', 'PayPal'].map((m) => (
