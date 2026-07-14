@@ -99,7 +99,7 @@ export default function ReturnPolicyPage() {
             <ol className="list-decimal pl-5 space-y-2">
               <li>
                 Contact us via phone at <strong>+254 712 775 426</strong> or email us at{' '}
-                <strong>info@lijustores.co.ke</strong> within 7 days of receiving
+                <strong>info@lijustore.co.ke</strong> within 7 days of receiving
                 your order.
               </li>
               <li>
