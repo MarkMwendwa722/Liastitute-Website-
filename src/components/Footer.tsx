@@ -66,6 +66,7 @@ export default function Footer() {
               { label: 'About Us', to: '/about' },
               { label: 'All Products', to: '/products' },
               { label: 'Contact Us', to: '/contact' },
+              { label: 'Return Policy', to: '/returns' },
               { label: 'Shopping Cart', to: '/cart' },
               { label: 'My Account', to: '/account' },
               { label: 'Wishlist', to: '/wishlist' },
@@ -100,7 +101,7 @@ export default function Footer() {
             {[
               { Icon: MapPin, text: 'Gaberone plaza, third floor shop T1 Nairobi, Kenya' },
               { Icon: Phone, text: '+254 712 775 426' },
-              { Icon: Mail, text: ' info@liastuteenterprises.co.ke' },
+              { Icon: Mail, text: ' info@lijustore.co.ke' },
             ].map(({ Icon, text }) => (
               <li key={text} className="flex items-start gap-2">
                 <Icon size={14} className="text-brand mt-0.5 shrink-0" />

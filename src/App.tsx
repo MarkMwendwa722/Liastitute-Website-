@@ -12,6 +12,7 @@ import ProductDetailPage from './pages/ProductDetail';
 import CartPage from './pages/Cart';
 import CheckoutPage from './pages/Checkout';
 import SendEmailPage from './pages/SendEmail';
+import ReturnPolicyPage from './pages/ReturnPolicy';
 import NotFoundPage from './pages/NotFound';
 
 function ScrollToTop() {
@@ -42,6 +43,7 @@ export default function App() {
                 <Route path="/cart"       element={<CartPage />} />
                 <Route path="/checkout"   element={<CheckoutPage />} />
                 <Route path="/send-email" element={<SendEmailPage />} />
+                <Route path="/returns"     element={<ReturnPolicyPage />} />
                 <Route path="*"           element={<NotFoundPage />} />
               </Routes>
             </main>
