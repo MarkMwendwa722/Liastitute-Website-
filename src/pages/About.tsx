@@ -1,4 +1,5 @@
 import { Award, CheckCircle2, HeartHandshake, ShieldCheck, Truck, Users } from 'lucide-react';
+import Seo from '../components/Seo';
 
 const VALUES = [
   {
@@ -32,6 +33,11 @@ const STATS = [
 export default function AboutPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 pb-16">
+      <Seo
+        title="About Liastute"
+        description="Learn about Liastute, a Kenya-based store focused on practical, reliable products for homes, work, and everyday life."
+        canonicalPath="/about"
+      />
       <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-center">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-brand">

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import Seo from '../components/Seo';
 import { useSearch } from '../context/SearchContext';
 // categories now comes from useSearch context
 
@@ -51,8 +52,16 @@ export default function ProductsPage() {
   if (loading) return <div className="text-center py-24">Loading...</div>;
   if (error) return <div className="text-center py-24 text-red-500">{error}</div>;
 
+  const hasSearchFilters = searchParams.toString().length > 0;
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 pb-16 min-h-[70vh]">
+      <Seo
+        title={hasSearchFilters ? 'Filtered Products' : 'Shop Products'}
+        description="Browse Liastute products by category, price, rating, and search terms."
+        canonicalPath="/products"
+        noindex={hasSearchFilters}
+      />
       <div className="flex gap-7 items-start">
 
         {/* ── Sidebar ─────────────────────────────────────────────────────── */}

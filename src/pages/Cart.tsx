@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import Seo from '../components/Seo';
 import { getDisplayCategory } from '../utils/api';
 
 export default function CartPage() {
@@ -13,6 +14,13 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
+        <Seo
+          title="Your Cart"
+          description="Review the items in your Liastute cart before checkout."
+          canonicalPath="/cart"
+          noindex
+          nofollow
+        />
         <div className="text-center">
           <ShoppingBag size={80} className="text-gray-200 mx-auto mb-4" />
           <h2 className="text-2xl font-black text-navy mb-2">Your cart is empty</h2>
@@ -30,6 +38,13 @@ export default function CartPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 pb-16">
+      <Seo
+        title="Your Cart"
+        description="Review the items in your Liastute cart before checkout."
+        canonicalPath="/cart"
+        noindex
+        nofollow
+      />
       {/* Header */}
       <div className="flex items-center justify-between mb-7 flex-wrap gap-3">
         <h1 className="text-2xl font-black text-navy">

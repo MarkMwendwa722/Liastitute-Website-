@@ -7,6 +7,7 @@ import {
 import { useSearch } from '../context/SearchContext';
 import { useCart } from '../context/CartContext';
 import ProductCard from '../components/ProductCard';
+import Seo from '../components/Seo';
 import { getDisplayCategory } from '../utils/api';
 
 const ProductDetail = () => {
@@ -24,6 +25,12 @@ const ProductDetail = () => {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
+        <Seo
+          title="Product Not Found"
+          description="The requested product could not be found on Liastute."
+          canonicalPath={`/product/${id ?? ''}`}
+          noindex
+        />
         <h2 className="text-2xl font-bold text-navy mb-4">Product not found</h2>
         <Link to="/products" className="text-brand font-semibold no-underline hover:underline">
           ← Back to products
@@ -53,6 +60,12 @@ const ProductDetail = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-7 pb-16">
+      <Seo
+        title={product.name}
+        description={product.description}
+        canonicalPath={`/product/${product.id}`}
+        image={product.image}
+      />
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-gray-500 mb-7 flex-wrap">
         <button

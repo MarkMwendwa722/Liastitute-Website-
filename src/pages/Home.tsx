@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Truck, RotateCcw, ShieldCheck, Headphones, Flame, Laptop, Home as HomeIcon, Dumbbell, Sparkles, LayoutGrid, Tag, ChevronLeft, ChevronRight, Car, Droplets, Armchair, Baby, ChefHat, Lightbulb, Wifi, Camera, Sun, Gift, Plug } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import Seo from '../components/Seo';
 import { useSearch } from '../context/SearchContext';
 
 const FEATURES = [
@@ -114,6 +115,11 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Liastute Kenya | Home Appliances, Electronics, Furniture and More"
+        description="Shop practical home appliances, electronics, kitchen equipment, furniture, tools, and daily essentials at Liastute Kenya."
+        canonicalPath="/"
+      />
       {/* ── Hero Carousel ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden">
         <div

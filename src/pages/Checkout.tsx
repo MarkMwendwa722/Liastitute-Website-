@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AlertCircle, Check, MapPin } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import type { CartItem } from "../types";
+import Seo from '../components/Seo';
 import {
   buildOrderEmailHtml,
   buildOrderEmailSubject,
@@ -134,6 +135,13 @@ export default function CheckoutPage() {
   if (items.length === 0 && !orderPlaced) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
+        <Seo
+          title="Checkout"
+          description="Complete your Liastute order and choose a payment method."
+          canonicalPath="/checkout"
+          noindex
+          nofollow
+        />
         <h2 className="text-2xl font-bold text-navy mb-4">
           Your cart is empty
         </h2>
@@ -150,6 +158,13 @@ export default function CheckoutPage() {
   if (orderPlaced) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center px-4 py-12">
+        <Seo
+          title="Order Received"
+          description="Your Liastute order was received successfully."
+          canonicalPath="/checkout"
+          noindex
+          nofollow
+        />
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 sm:p-10 max-w-lg w-full text-center">
           <div className="w-16 h-16 bg-success rounded-full flex items-center justify-center mx-auto mb-5">
             <Check size={30} className="text-white" />
@@ -224,6 +239,13 @@ export default function CheckoutPage() {
       onSubmit={handlePlaceOrder}
       className="max-w-7xl mx-auto px-4 py-10 pb-16"
     >
+      <Seo
+        title="Checkout"
+        description="Complete your Liastute order and choose a payment method."
+        canonicalPath="/checkout"
+        noindex
+        nofollow
+      />
       <div className="grid lg:grid-cols-[1fr_440px] gap-8 lg:gap-10 items-start">
         <section className="border-t border-gray-200 pt-8">
           <h1 className="text-xl font-black text-navy mb-5 uppercase">

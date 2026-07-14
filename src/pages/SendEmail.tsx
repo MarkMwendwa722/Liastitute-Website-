@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AlertCircle, CheckCircle2, Mail, Send } from 'lucide-react';
+import Seo from '../components/Seo';
 import { useCart } from '../context/CartContext';
 import { buildOrderEmailHtml, buildOrderEmailSubject } from '../utils/orderEmail';
 
@@ -92,6 +93,13 @@ export default function SendEmailPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 pb-16">
+      <Seo
+        title="Send Order Email"
+        description="Submit your Liastute order details through the secure email workflow."
+        canonicalPath="/send-email"
+        noindex
+        nofollow
+      />
       <section className="mb-8">
         <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-brand">
           <Mail size={16} />

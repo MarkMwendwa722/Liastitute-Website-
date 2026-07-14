@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AlertCircle, CheckCircle2, Clock, Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react';
+import Seo from '../components/Seo';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 const EMAIL_ENDPOINT =
@@ -38,6 +39,11 @@ export default function ContactPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 pb-16">
+      <Seo
+        title="Contact Liastute"
+        description="Contact Liastute for product questions, order support, or general inquiries by phone, email, or the website form."
+        canonicalPath="/contact"
+      />
       <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-brand">
