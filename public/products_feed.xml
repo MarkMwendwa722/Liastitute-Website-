@@ -1,0 +1,1105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+  <channel>
+    <title>Lijustore - Product Feed</title>
+    <link>https://lijustore.co.ke</link>
+    <description>Google Merchant product feed for Lijustore Kenya — home appliances, electronics, furniture, and more.</description>
+
+    <!-- Product 1 -->
+    <item>
+      <g:id>1</g:id>
+      <g:title>Multifunctional Vehicle Inverter 12/24V</g:title>
+      <g:description>Multifunctional 12/24V vehicle inverter for reliable power on the go.</g:description>
+      <g:link>https://lijustore.co.ke/product/1</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260311_111103.jpg</g:image_link>
+      <g:price>3499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Vehicles &amp; Parts &gt; Automotive Parts &amp; Accessories &gt; Automotive Accessories</g:google_product_category>
+    </item>
+
+    <!-- Product 2 -->
+    <item>
+      <g:id>2</g:id>
+      <g:title>Electronic Device 2</g:title>
+      <g:description>Premium electronics</g:description>
+      <g:link>https://lijustore.co.ke/product/2</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260311_172618.jpg</g:image_link>
+      <g:price>3499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics</g:google_product_category>
+    </item>
+
+    <!-- Product 3 -->
+    <item>
+      <g:id>3</g:id>
+      <g:title>Signature Electric Crepe and Chapati Maker</g:title>
+      <g:description>Electric crepe and chapati maker for quick, even cooking.</g:description>
+      <g:link>https://lijustore.co.ke/product/3</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260311_172634.jpg</g:image_link>
+      <g:price>3499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Signature</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 4 -->
+    <item>
+      <g:id>4</g:id>
+      <g:title>Home Appliance 1</g:title>
+      <g:description>Essential home appliance</g:description>
+      <g:link>https://lijustore.co.ke/product/4</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260408_111835.jpg</g:image_link>
+      <g:price>8999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 5 -->
+    <item>
+      <g:id>5</g:id>
+      <g:title>Smart Pro 2-in-1 Blender</g:title>
+      <g:description>Smart Pro 2-in-1 blender for everyday blending needs.</g:description>
+      <g:link>https://lijustore.co.ke/product/5</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260408_112058.jpg</g:image_link>
+      <g:price>2199.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Smart Pro</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 6 -->
+    <item>
+      <g:id>6</g:id>
+      <g:title>Home Appliance 3</g:title>
+      <g:description>Durable home device</g:description>
+      <g:link>https://lijustore.co.ke/product/6</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260408_113802.jpg</g:image_link>
+      <g:price>7499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 7 -->
+    <item>
+      <g:id>7</g:id>
+      <g:title>Ipcone 2-in-1 Blender</g:title>
+      <g:description>Ipcone 2-in-1 blender for smooth blending and daily kitchen prep.</g:description>
+      <g:link>https://lijustore.co.ke/product/7</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260408_113830.jpg</g:image_link>
+      <g:price>2099.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Ipcone</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 8 -->
+    <item>
+      <g:id>8</g:id>
+      <g:title>Fitness Equipment 1</g:title>
+      <g:description>Home workout equipment</g:description>
+      <g:link>https://lijustore.co.ke/product/8</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260416_101921.jpg</g:image_link>
+      <g:price>12999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Sports &amp; Outdoors &gt; Exercise &amp; Fitness &gt; Fitness Equipment</g:google_product_category>
+    </item>
+
+    <!-- Product 9 -->
+    <item>
+      <g:id>9</g:id>
+      <g:title>Premier 20L Knapsack Sprayer</g:title>
+      <g:description>Premier 20L knapsack sprayer for garden, farm, and outdoor use.</g:description>
+      <g:link>https://lijustore.co.ke/product/9</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260416_101925.jpg</g:image_link>
+      <g:price>1999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Premier</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Lawn &amp; Garden &gt; Garden Tools</g:google_product_category>
+    </item>
+
+    <!-- Product 10 -->
+    <item>
+      <g:id>10</g:id>
+      <g:title>Office Chair Without Headrest</g:title>
+      <g:description>Comfortable office chair without headrest for home or workplace use.</g:description>
+      <g:link>https://lijustore.co.ke/product/10</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260417_102226.jpg</g:image_link>
+      <g:price>3799.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Office Supplies &gt; Office Equipment</g:google_product_category>
+    </item>
+
+    <!-- Product 11 -->
+    <item>
+      <g:id>11</g:id>
+      <g:title>Bosch 10-Piece Cookware Set</g:title>
+      <g:description>Bosch 10-piece cookware set for reliable everyday cooking.</g:description>
+      <g:link>https://lijustore.co.ke/product/11</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260417_161008.jpg</g:image_link>
+      <g:price>6999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Bosch</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Cookware</g:google_product_category>
+    </item>
+
+    <!-- Product 12 -->
+    <item>
+      <g:id>12</g:id>
+      <g:title>Furniture 3</g:title>
+      <g:description>Premium furniture design</g:description>
+      <g:link>https://lijustore.co.ke/product/12</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260417_161658.jpg</g:image_link>
+      <g:price>22999.00 KES</g:price>
+      <g:sale_price>28999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Furniture</g:google_product_category>
+    </item>
+
+    <!-- Product 13 -->
+    <item>
+      <g:id>13</g:id>
+      <g:title>Electronic Device 4</g:title>
+      <g:description>Latest tech gadget</g:description>
+      <g:link>https://lijustore.co.ke/product/13</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260420_122150.jpg</g:image_link>
+      <g:price>4999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics</g:google_product_category>
+    </item>
+
+    <!-- Product 14 -->
+    <item>
+      <g:id>14</g:id>
+      <g:title>Baofeng BF-888S Radio Call</g:title>
+      <g:description>Baofeng BF-888S radio call handset sold per piece.</g:description>
+      <g:link>https://lijustore.co.ke/product/14</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260420_122155.jpg</g:image_link>
+      <g:price>1299.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Baofeng</g:brand>
+      <g:google_product_category>Electronics &gt; Communications &gt; Telecommunications</g:google_product_category>
+    </item>
+
+    <!-- Product 15 -->
+    <item>
+      <g:id>15</g:id>
+      <g:title>58mm Bluetooth Thermal Receipt Mobile Printer</g:title>
+      <g:description>Portable 58mm Bluetooth thermal receipt printer for mobile business use.</g:description>
+      <g:link>https://lijustore.co.ke/product/15</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260421_161011.jpg</g:image_link>
+      <g:price>3499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Office Supplies &gt; Office Equipment</g:google_product_category>
+    </item>
+
+    <!-- Product 16 -->
+    <item>
+      <g:id>16</g:id>
+      <g:title>Kitchen Appliance 2</g:title>
+      <g:description>Professional cooking tool</g:description>
+      <g:link>https://lijustore.co.ke/product/16</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260422_142457.jpg</g:image_link>
+      <g:price>6499.00 KES</g:price>
+      <g:sale_price>7999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 17 -->
+    <item>
+      <g:id>17</g:id>
+      <g:title>Jump Starter Kit with Digital Compressor</g:title>
+      <g:description>Jump starter kit with digital compressor for emergency vehicle support.</g:description>
+      <g:link>https://lijustore.co.ke/product/17</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260422_142502.jpg</g:image_link>
+      <g:price>5999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Vehicles &amp; Parts &gt; Automotive Parts &amp; Accessories &gt; Automotive Accessories</g:google_product_category>
+    </item>
+
+    <!-- Product 18 -->
+    <item>
+      <g:id>18</g:id>
+      <g:title>Home Appliance 4</g:title>
+      <g:description>Smart home device</g:description>
+      <g:link>https://lijustore.co.ke/product/18</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260422_181128.jpg</g:image_link>
+      <g:price>11999.00 KES</g:price>
+      <g:sale_price>14999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 19 -->
+    <item>
+      <g:id>19</g:id>
+      <g:title>Triple Lens 4G Solar Powered Camera</g:title>
+      <g:description>Triple lens 4G solar powered camera for outdoor surveillance.</g:description>
+      <g:link>https://lijustore.co.ke/product/19</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260422_181306.jpg</g:image_link>
+      <g:price>7499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics &gt; Security &amp; Surveillance</g:google_product_category>
+    </item>
+
+    <!-- Product 20 -->
+    <item>
+      <g:id>20</g:id>
+      <g:title>Fitness Equipment 3</g:title>
+      <g:description>Advanced fitness gear</g:description>
+      <g:link>https://lijustore.co.ke/product/20</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260423_175909.jpg</g:image_link>
+      <g:price>16999.00 KES</g:price>
+      <g:sale_price>21999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Sports &amp; Outdoors &gt; Exercise &amp; Fitness &gt; Fitness Equipment</g:google_product_category>
+    </item>
+
+    <!-- Product 21 -->
+    <item>
+      <g:id>21</g:id>
+      <g:title>Edenberg 12-Piece Cookware Set</g:title>
+      <g:description>Edenberg 12-piece cookware set for complete kitchen cooking needs.</g:description>
+      <g:link>https://lijustore.co.ke/product/21</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260423_175912.jpg</g:image_link>
+      <g:price>8999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Edenberg</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Cookware</g:google_product_category>
+    </item>
+
+    <!-- Product 22 -->
+    <item>
+      <g:id>22</g:id>
+      <g:title>Furniture 4</g:title>
+      <g:description>Luxury furniture</g:description>
+      <g:link>https://lijustore.co.ke/product/22</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_121659.jpg</g:image_link>
+      <g:price>24999.00 KES</g:price>
+      <g:sale_price>31999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Furniture</g:google_product_category>
+    </item>
+
+    <!-- Product 23 -->
+    <item>
+      <g:id>23</g:id>
+      <g:title>Triple Lens WiFi Solar Powered Camera</g:title>
+      <g:description>Triple lens WiFi solar powered camera for home and business security.</g:description>
+      <g:link>https://lijustore.co.ke/product/23</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_121709.jpg</g:image_link>
+      <g:price>7499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics &gt; Security &amp; Surveillance</g:google_product_category>
+    </item>
+
+    <!-- Product 24 -->
+    <item>
+      <g:id>24</g:id>
+      <g:title>Kitchen Scale 10kg</g:title>
+      <g:description>10kg kitchen scale for accurate weighing during food prep.</g:description>
+      <g:link>https://lijustore.co.ke/product/24</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_155354.jpg</g:image_link>
+      <g:price>799.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Tools</g:google_product_category>
+    </item>
+
+    <!-- Product 25 -->
+    <item>
+      <g:id>25</g:id>
+      <g:title>Neelux 100W AC Flood Light</g:title>
+      <g:description>Neelux 100W AC flood light for bright outdoor illumination.</g:description>
+      <g:link>https://lijustore.co.ke/product/25</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_160913.jpg</g:image_link>
+      <g:price>1499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Neelux</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Lighting</g:google_product_category>
+    </item>
+
+    <!-- Product 26 -->
+    <item>
+      <g:id>26</g:id>
+      <g:title>Automotive Accessory 2</g:title>
+      <g:description>Premium car accessory</g:description>
+      <g:link>https://lijustore.co.ke/product/26</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_161324.jpg</g:image_link>
+      <g:price>1599.00 KES</g:price>
+      <g:sale_price>1999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Vehicles &amp; Parts &gt; Automotive Parts &amp; Accessories &gt; Automotive Accessories</g:google_product_category>
+    </item>
+
+    <!-- Product 27 -->
+    <item>
+      <g:id>27</g:id>
+      <g:title>Nunix 2-in-1 Blender</g:title>
+      <g:description>Nunix 2-in-1 blender for everyday kitchen blending.</g:description>
+      <g:link>https://lijustore.co.ke/product/27</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_161341.jpg</g:image_link>
+      <g:price>2099.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Nunix</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 28 -->
+    <item>
+      <g:id>28</g:id>
+      <g:title>Home Appliance 6</g:title>
+      <g:description>Modern home solution</g:description>
+      <g:link>https://lijustore.co.ke/product/28</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_161848.jpg</g:image_link>
+      <g:price>8499.00 KES</g:price>
+      <g:sale_price>10999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 29 -->
+    <item>
+      <g:id>29</g:id>
+      <g:title>Bosch 6L Electric Pressure Cooker</g:title>
+      <g:description>Bosch 6L electric pressure cooker for fast, convenient meals.</g:description>
+      <g:link>https://lijustore.co.ke/product/29</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_161905.jpg</g:image_link>
+      <g:price>4999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Bosch</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 30 -->
+    <item>
+      <g:id>30</g:id>
+      <g:title>Kitchen Appliance 4</g:title>
+      <g:description>Advanced kitchen tool</g:description>
+      <g:link>https://lijustore.co.ke/product/30</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_180211.jpg</g:image_link>
+      <g:price>7999.00 KES</g:price>
+      <g:sale_price>9999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 31 -->
+    <item>
+      <g:id>31</g:id>
+      <g:title>Signature 4-in-1 Blender</g:title>
+      <g:description>Signature 4-in-1 blender for versatile kitchen preparation.</g:description>
+      <g:link>https://lijustore.co.ke/product/31</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260430_180243.jpg</g:image_link>
+      <g:price>4799.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Signature</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 32 -->
+    <item>
+      <g:id>32</g:id>
+      <g:title>58mm Mobile Thermal Receipt Printer</g:title>
+      <g:description>58mm mobile thermal receipt printer for quick receipt printing.</g:description>
+      <g:link>https://lijustore.co.ke/product/32</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260501_105328.jpg</g:image_link>
+      <g:price>3499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Office Supplies &gt; Office Equipment</g:google_product_category>
+    </item>
+
+    <!-- Product 33 -->
+    <item>
+      <g:id>33</g:id>
+      <g:title>Electronic Device 8</g:title>
+      <g:description>Cutting-edge technology</g:description>
+      <g:link>https://lijustore.co.ke/product/33</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260509_130911.jpg</g:image_link>
+      <g:price>6999.00 KES</g:price>
+      <g:sale_price>8999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics</g:google_product_category>
+    </item>
+
+    <!-- Product 34 -->
+    <item>
+      <g:id>34</g:id>
+      <g:title>Nduthi Style Kids Bike 16 Inch</g:title>
+      <g:description>16-inch nduthi style kids bike for young riders.</g:description>
+      <g:link>https://lijustore.co.ke/product/34</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260509_130926.jpg</g:image_link>
+      <g:price>7499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Sports &amp; Outdoors &gt; Cycling &gt; Bikes</g:google_product_category>
+    </item>
+
+    <!-- Product 35 -->
+    <item>
+      <g:id>35</g:id>
+      <g:title>Fitness Equipment 5</g:title>
+      <g:description>Complete fitness solution</g:description>
+      <g:link>https://lijustore.co.ke/product/35</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260509_175732.jpg</g:image_link>
+      <g:price>15499.00 KES</g:price>
+      <g:sale_price>19999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Sports &amp; Outdoors &gt; Exercise &amp; Fitness &gt; Fitness Equipment</g:google_product_category>
+    </item>
+
+    <!-- Product 36 -->
+    <item>
+      <g:id>36</g:id>
+      <g:title>Automatic Money Counting Machine</g:title>
+      <g:description>Automatic bill counter for fast and accurate cash counting.</g:description>
+      <g:link>https://lijustore.co.ke/product/36</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260509_175745.jpg</g:image_link>
+      <g:price>9998.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Office Supplies &gt; Office Equipment</g:google_product_category>
+    </item>
+
+    <!-- Product 37 -->
+    <item>
+      <g:id>37</g:id>
+      <g:title>Lady Bird Kids Bicycle 16 Inch</g:title>
+      <g:description>16-inch Lady Bird kids bicycle for comfortable riding.</g:description>
+      <g:link>https://lijustore.co.ke/product/37</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260511_162916.jpg</g:image_link>
+      <g:price>6499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lady Bird</g:brand>
+      <g:google_product_category>Sports &amp; Outdoors &gt; Cycling &gt; Bikes</g:google_product_category>
+    </item>
+
+    <!-- Product 38 -->
+    <item>
+      <g:id>38</g:id>
+      <g:title>Furniture 8</g:title>
+      <g:description>Durable furniture set</g:description>
+      <g:link>https://lijustore.co.ke/product/38</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260511_163312.jpg</g:image_link>
+      <g:price>16999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Furniture</g:google_product_category>
+    </item>
+
+    <!-- Product 39 -->
+    <item>
+      <g:id>39</g:id>
+      <g:title>Home Appliance 8</g:title>
+      <g:description>Intelligent home device</g:description>
+      <g:link>https://lijustore.co.ke/product/39</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260512_122035.jpg</g:image_link>
+      <g:price>12499.00 KES</g:price>
+      <g:sale_price>15999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 40 -->
+    <item>
+      <g:id>40</g:id>
+      <g:title>Nunix 2-Burner Table Top Gas Cooker</g:title>
+      <g:description>Nunix 2-burner table top gas cooker for compact cooking spaces.</g:description>
+      <g:link>https://lijustore.co.ke/product/40</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260512_122039.jpg</g:image_link>
+      <g:price>1999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Nunix</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 41 -->
+    <item>
+      <g:id>41</g:id>
+      <g:title>Kitchen Appliance 6</g:title>
+      <g:description>Gourmet kitchen tool</g:description>
+      <g:link>https://lijustore.co.ke/product/41</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260514_104814.jpg</g:image_link>
+      <g:price>8499.00 KES</g:price>
+      <g:sale_price>10499.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 42 -->
+    <item>
+      <g:id>42</g:id>
+      <g:title>GSM Landline Dual SIM Phone 6588</g:title>
+      <g:description>GSM landline phone with dual SIM support, model 6588.</g:description>
+      <g:link>https://lijustore.co.ke/product/42</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260514_105923.jpg</g:image_link>
+      <g:price>2999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics &gt; Communications &gt; Telecommunications</g:google_product_category>
+    </item>
+
+    <!-- Product 43 -->
+    <item>
+      <g:id>43</g:id>
+      <g:title>Automotive Accessory 4</g:title>
+      <g:description>Advanced car accessory</g:description>
+      <g:link>https://lijustore.co.ke/product/43</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260514_115218.jpg</g:image_link>
+      <g:price>1799.00 KES</g:price>
+      <g:sale_price>2299.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Vehicles &amp; Parts &gt; Automotive Parts &amp; Accessories &gt; Automotive Accessories</g:google_product_category>
+    </item>
+
+    <!-- Product 44 -->
+    <item>
+      <g:id>44</g:id>
+      <g:title>Dual Lens 4G Solar Powered CCTV Camera</g:title>
+      <g:description>Dual lens 4G solar powered CCTV camera for reliable surveillance.</g:description>
+      <g:link>https://lijustore.co.ke/product/44</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260514_115725.jpg</g:image_link>
+      <g:price>6499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics &gt; Security &amp; Surveillance</g:google_product_category>
+    </item>
+
+    <!-- Product 45 -->
+    <item>
+      <g:id>45</g:id>
+      <g:title>Electronic Device 10</g:title>
+      <g:description>Premium tech product</g:description>
+      <g:link>https://lijustore.co.ke/product/45</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260514_120757.jpg</g:image_link>
+      <g:price>7499.00 KES</g:price>
+      <g:sale_price>9499.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics</g:google_product_category>
+    </item>
+
+    <!-- Product 46 -->
+    <item>
+      <g:id>46</g:id>
+      <g:title>Ergonomic Office Chair Without Headrest</g:title>
+      <g:description>Ergonomic office chair without headrest for comfortable work sessions.</g:description>
+      <g:link>https://lijustore.co.ke/product/46</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260514_120806.jpg</g:image_link>
+      <g:price>3999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Office Supplies &gt; Office Equipment</g:google_product_category>
+    </item>
+
+    <!-- Product 47 -->
+    <item>
+      <g:id>47</g:id>
+      <g:title>Furniture 9</g:title>
+      <g:description>Luxury seating furniture</g:description>
+      <g:link>https://lijustore.co.ke/product/47</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260515_113906.jpg</g:image_link>
+      <g:price>23999.00 KES</g:price>
+      <g:sale_price>29999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Furniture</g:google_product_category>
+    </item>
+
+    <!-- Product 48 -->
+    <item>
+      <g:id>48</g:id>
+      <g:title>Kids Piggy Bank</g:title>
+      <g:description>Kids piggy bank for fun saving habits.</g:description>
+      <g:link>https://lijustore.co.ke/product/48</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260515_113922.jpg</g:image_link>
+      <g:price>1999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Baby &amp; Toddler &gt; Baby &amp; Toddler Toys</g:google_product_category>
+    </item>
+
+    <!-- Product 49 -->
+    <item>
+      <g:id>49</g:id>
+      <g:title>Kids Piggy Bank</g:title>
+      <g:description>Kids piggy bank for encouraging simple saving habits.</g:description>
+      <g:link>https://lijustore.co.ke/product/49</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260515_114842.jpg</g:image_link>
+      <g:price>2499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Baby &amp; Toddler &gt; Baby &amp; Toddler Toys</g:google_product_category>
+    </item>
+
+    <!-- Product 50 -->
+    <item>
+      <g:id>50</g:id>
+      <g:title>Kids Piggy Bank</g:title>
+      <g:description>Kids piggy bank for storing coins and small savings.</g:description>
+      <g:link>https://lijustore.co.ke/product/50</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260515_115047.jpg</g:image_link>
+      <g:price>2499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Baby &amp; Toddler &gt; Baby &amp; Toddler Toys</g:google_product_category>
+    </item>
+
+    <!-- Product 51 -->
+    <item>
+      <g:id>51</g:id>
+      <g:title>Ailyons 1.8L Electric Cordless Kettle</g:title>
+      <g:description>Ailyons 1.8L electric cordless kettle for quick boiling.</g:description>
+      <g:link>https://lijustore.co.ke/product/51</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260520_121813.jpg</g:image_link>
+      <g:price>1299.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Ailyons</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 52 -->
+    <item>
+      <g:id>52</g:id>
+      <g:title>Home Appliance 11</g:title>
+      <g:description>Advanced home device</g:description>
+      <g:link>https://lijustore.co.ke/product/52</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260520_121832.jpg</g:image_link>
+      <g:price>10799.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 53 -->
+    <item>
+      <g:id>53</g:id>
+      <g:title>Synix Steam Iron Box</g:title>
+      <g:description>Synix steam iron box for neat, wrinkle-free clothes.</g:description>
+      <g:link>https://lijustore.co.ke/product/53</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260521_141407.jpg</g:image_link>
+      <g:price>2299.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Synix</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 54 -->
+    <item>
+      <g:id>54</g:id>
+      <g:title>Kitchen Appliance 9</g:title>
+      <g:description>Reliable kitchen tool</g:description>
+      <g:link>https://lijustore.co.ke/product/54</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260521_141607.jpg</g:image_link>
+      <g:price>6999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 55 -->
+    <item>
+      <g:id>55</g:id>
+      <g:title>Nunix Dry Iron Box</g:title>
+      <g:description>Nunix dry iron box for everyday ironing.</g:description>
+      <g:link>https://lijustore.co.ke/product/55</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260521_142128.jpg</g:image_link>
+      <g:price>999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Nunix</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 56 -->
+    <item>
+      <g:id>56</g:id>
+      <g:title>Electronic Device 13</g:title>
+      <g:description>Quality electronic device</g:description>
+      <g:link>https://lijustore.co.ke/product/56</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260521_142155.jpg</g:image_link>
+      <g:price>7299.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics</g:google_product_category>
+    </item>
+
+    <!-- Product 57 -->
+    <item>
+      <g:id>57</g:id>
+      <g:title>Ipcone Dry Iron Box</g:title>
+      <g:description>Ipcone dry iron box for simple daily ironing.</g:description>
+      <g:link>https://lijustore.co.ke/product/57</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260521_142549.jpg</g:image_link>
+      <g:price>999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Ipcone</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 58 -->
+    <item>
+      <g:id>58</g:id>
+      <g:title>Automotive Accessory 7</g:title>
+      <g:description>Essential car accessory</g:description>
+      <g:link>https://lijustore.co.ke/product/58</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260521_142619.jpg</g:image_link>
+      <g:price>999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Vehicles &amp; Parts &gt; Automotive Parts &amp; Accessories &gt; Automotive Accessories</g:google_product_category>
+    </item>
+
+    <!-- Product 59 -->
+    <item>
+      <g:id>59</g:id>
+      <g:title>Ramtons RM/399 1.7L Electric Corded Kettle</g:title>
+      <g:description>Ramtons RM/399 1.7L electric corded kettle for dependable boiling.</g:description>
+      <g:link>https://lijustore.co.ke/product/59</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260521_142949.jpg</g:image_link>
+      <g:price>1999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Ramtons</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 60 -->
+    <item>
+      <g:id>60</g:id>
+      <g:title>Furniture 12</g:title>
+      <g:description>Comfortable furniture</g:description>
+      <g:link>https://lijustore.co.ke/product/60</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260521_143059.jpg</g:image_link>
+      <g:price>18499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Furniture</g:google_product_category>
+    </item>
+
+    <!-- Product 61 -->
+    <item>
+      <g:id>61</g:id>
+      <g:title>Home Appliance 12</g:title>
+      <g:description>Premium home appliance</g:description>
+      <g:link>https://lijustore.co.ke/product/61</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260522_113725.jpg</g:image_link>
+      <g:price>13299.00 KES</g:price>
+      <g:sale_price>16999.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 62 -->
+    <item>
+      <g:id>62</g:id>
+      <g:title>Modio M93 Tablet</g:title>
+      <g:description>Modio M93 tablet for entertainment, learning, and everyday use.</g:description>
+      <g:link>https://lijustore.co.ke/product/62</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260522_114004.jpg</g:image_link>
+      <g:price>12999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Modio</g:brand>
+      <g:google_product_category>Electronics &gt; Computers &gt; Tablet Computers</g:google_product_category>
+    </item>
+
+    <!-- Product 63 -->
+    <item>
+      <g:id>63</g:id>
+      <g:title>Fridge and TV Guard</g:title>
+      <g:description>Fridge and TV guard for appliance power protection.</g:description>
+      <g:link>https://lijustore.co.ke/product/63</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260525_123449.jpg</g:image_link>
+      <g:price>899.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 64 -->
+    <item>
+      <g:id>64</g:id>
+      <g:title>Kitchen Appliance 11</g:title>
+      <g:description>Quality kitchen appliance</g:description>
+      <g:link>https://lijustore.co.ke/product/64</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260525_123500.jpg</g:image_link>
+      <g:price>8499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 65 -->
+    <item>
+      <g:id>65</g:id>
+      <g:title>Multifunctional Vehicle Inverter 12/24V</g:title>
+      <g:description>Multifunctional 12/24V vehicle inverter for powering devices while travelling.</g:description>
+      <g:link>https://lijustore.co.ke/product/65</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260525_143428.jpg</g:image_link>
+      <g:price>3399.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Vehicles &amp; Parts &gt; Automotive Parts &amp; Accessories &gt; Automotive Accessories</g:google_product_category>
+    </item>
+
+    <!-- Product 66 -->
+    <item>
+      <g:id>66</g:id>
+      <g:title>Fitness Equipment 10</g:title>
+      <g:description>Complete fitness solution</g:description>
+      <g:link>https://lijustore.co.ke/product/66</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260525_143519.jpg</g:image_link>
+      <g:price>14999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Sports &amp; Outdoors &gt; Exercise &amp; Fitness &gt; Fitness Equipment</g:google_product_category>
+    </item>
+
+    <!-- Product 67 -->
+    <item>
+      <g:id>67</g:id>
+      <g:title>Von 1.7L Corded Electric Kettle</g:title>
+      <g:description>Von 1.7L corded electric kettle for fast water boiling.</g:description>
+      <g:link>https://lijustore.co.ke/product/67</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260526_093538.jpg</g:image_link>
+      <g:price>1999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Von</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 68 -->
+    <item>
+      <g:id>68</g:id>
+      <g:title>Electronic Device 15</g:title>
+      <g:description>Advanced electronic device</g:description>
+      <g:link>https://lijustore.co.ke/product/68</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260526_093740.jpg</g:image_link>
+      <g:price>6599.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Electronics</g:google_product_category>
+    </item>
+
+    <!-- Product 69 -->
+    <item>
+      <g:id>69</g:id>
+      <g:title>Ailyons 1.7L Electric Cordless Kettle</g:title>
+      <g:description>Ailyons 1.7L electric cordless kettle for convenient boiling.</g:description>
+      <g:link>https://lijustore.co.ke/product/69</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260526_104933.jpg</g:image_link>
+      <g:price>25999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Ailyons</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 70 -->
+    <item>
+      <g:id>70</g:id>
+      <g:title>Furniture 14</g:title>
+      <g:description>Elegant furniture set</g:description>
+      <g:link>https://lijustore.co.ke/product/70</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260526_104949.jpg</g:image_link>
+      <g:price>21999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Furniture</g:google_product_category>
+    </item>
+
+    <!-- Product 71 -->
+    <item>
+      <g:id>71</g:id>
+      <g:title>Silver Crest 2-in-1 Blender</g:title>
+      <g:description>Silver Crest 2-in-1 blender for smooth blending and kitchen prep.</g:description>
+      <g:link>https://lijustore.co.ke/product/71</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260526_105738.jpg</g:image_link>
+      <g:price>2499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Silver Crest</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 72 -->
+    <item>
+      <g:id>72</g:id>
+      <g:title>Automotive Accessory 9</g:title>
+      <g:description>Quality auto accessory</g:description>
+      <g:link>https://lijustore.co.ke/product/72</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260526_110755.jpg</g:image_link>
+      <g:price>1199.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Vehicles &amp; Parts &gt; Automotive Parts &amp; Accessories &gt; Automotive Accessories</g:google_product_category>
+    </item>
+
+    <!-- Product 73 -->
+    <item>
+      <g:id>73</g:id>
+      <g:title>Multifunctional Jump Starter Kit with Compressor</g:title>
+      <g:description>Multifunctional jump starter kit with compressor for vehicle emergencies.</g:description>
+      <g:link>https://lijustore.co.ke/product/73</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260526_114736.jpg</g:image_link>
+      <g:price>4499.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Vehicles &amp; Parts &gt; Automotive Parts &amp; Accessories &gt; Automotive Accessories</g:google_product_category>
+    </item>
+
+    <!-- Product 74 -->
+    <item>
+      <g:id>74</g:id>
+      <g:title>Home Appliance 15</g:title>
+      <g:description>Efficient home solution</g:description>
+      <g:link>https://lijustore.co.ke/product/74</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/20260526_115116.jpg</g:image_link>
+      <g:price>9999.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Household Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 75 -->
+    <item>
+      <g:id>75</g:id>
+      <g:title>Kettle Pro 1.8L</g:title>
+      <g:description>Premium electric kettle with fast heating</g:description>
+      <g:link>https://lijustore.co.ke/product/75</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/FK-0320 kettle 1.8L.jpg</g:image_link>
+      <g:price>2499.00 KES</g:price>
+      <g:sale_price>3299.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 76 -->
+    <item>
+      <g:id>76</g:id>
+      <g:title>Ailyons 1.8L Cordless Electric Kettle</g:title>
+      <g:description>Ailyons 1.8L cordless electric kettle for quick and convenient boiling.</g:description>
+      <g:link>https://lijustore.co.ke/product/76</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/ailyons 1.8L fk03201.jpg</g:image_link>
+      <g:price>2899.00 KES</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Ailyons</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+    <!-- Product 77 -->
+    <item>
+      <g:id>77</g:id>
+      <g:title>Kettle Premium 1.7L</g:title>
+      <g:description>Compact efficient kettle</g:description>
+      <g:link>https://lijustore.co.ke/product/77</g:link>
+      <g:image_link>https://lijustore.co.ke/Photos/von 1.7L.jpg</g:image_link>
+      <g:price>2199.00 KES</g:price>
+      <g:sale_price>2899.00 KES</g:sale_price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lijustore</g:brand>
+      <g:google_product_category>Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances</g:google_product_category>
+    </item>
+
+  </channel>
+</rss>
