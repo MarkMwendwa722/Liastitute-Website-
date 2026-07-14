@@ -160,7 +160,7 @@ export default function ReturnPolicyPage() {
                 <strong>Phone:</strong> +254 712 775 426
               </p>
               <p>
-                <strong>Email:</strong> info@lijustoreenterprises.co.ke
+                <strong>Email:</strong> info@lijustore.co.ke
               </p>
               <p>
                 <strong>Visit us:</strong> Gaberone plaza, third floor shop T1, Nairobi, Kenya
