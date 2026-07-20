@@ -7,7 +7,7 @@ const EMAIL_ENDPOINT =
   import.meta.env.VITE_RESEND_EMAIL_ENDPOINT ||
   `${API_BASE_URL.replace(/\/$/, '')}/api/send-email`;
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'info@lijustoreenterprises.co.ke';
-const RESEND_FROM_EMAIL = import.meta.env.VITE_RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+const RESEND_FROM_EMAIL = import.meta.env.VITE_RESEND_FROM_EMAIL || 'info@lijustore.co.ke';
 
 const CONTACT_ITEMS = [
   {

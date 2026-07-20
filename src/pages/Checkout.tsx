@@ -9,9 +9,9 @@ import {
   buildOrderEmailSubject,
 } from "../utils/orderEmail";
 
-const ORDER_EMAIL = import.meta.env.VITE_ORDER_EMAIL || "maxmark722@gmail.com";
+const ORDER_EMAIL = import.meta.env.VITE_ORDER_EMAIL || "kobiajohn7@gmail.com";
 const RESEND_FROM_EMAIL =
-  import.meta.env.VITE_RESEND_FROM_EMAIL || "onboarding@resend.dev";
+  import.meta.env.VITE_RESEND_FROM_EMAIL || "info@lijustore.co.ke";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 const EMAIL_ENDPOINT =
   import.meta.env.VITE_RESEND_EMAIL_ENDPOINT ||

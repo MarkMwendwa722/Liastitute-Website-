@@ -23,6 +23,13 @@ jobs:
 
       - name: Build Vite project
         run: npm run build
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+          VITE_RESEND_EMAIL_ENDPOINT: ${{ secrets.VITE_RESEND_EMAIL_ENDPOINT }}
+          VITE_ORDER_EMAIL: ${{ secrets.VITE_ORDER_EMAIL }}
+          VITE_RESEND_FROM_EMAIL: ${{ secrets.VITE_RESEND_FROM_EMAIL }}
+          VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
+          VITE_CONTACT_EMAIL: ${{ secrets.VITE_CONTACT_EMAIL }}
 
       - name: List dist files
         run: |
