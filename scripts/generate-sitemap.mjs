@@ -1,28 +1,35 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const API_URL = process.env.VITE_API_BASE_URL || 'https://lijustore.co.ke';
 const siteUrl = process.env.VITE_SITE_URL || 'https://lijustore.co.ke';
 const root = process.cwd();
 const outputFile = resolve(root, 'public/sitemap.xml');
 
-async function main() {
-  const url = `${API_URL.replace(/\/$/, '')}/api/products?limit=100`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`API error: ${res.status} ${res.statusText}`);
-  const json = await res.json();
-  if (!json.success || !Array.isArray(json.data)) {
-    throw new Error('Unexpected API response shape');
+/** Try to fetch product IDs from the API. If unavailable, return empty array. */
+async function fetchProductIds() {
+  try {
+    const res = await fetch('https://lijustore.co.ke/api/products?limit=100', {
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!res.ok) return [];
+    const json = await res.json();
+    if (!json.success || !Array.isArray(json.data)) return [];
+    return json.data.map((p) => p.externalId || p.id);
+  } catch {
+    console.warn('⚠️  Products API unreachable — sitemap will contain static pages only.');
+    return [];
   }
+}
 
-  const uniqueProductIds = json.data.map((p) => p.externalId || p.id);
+async function main() {
+  const productIds = await fetchProductIds();
 
 const pages = [
   { url: '/', priority: '1.0', changefreq: 'daily' },
   { url: '/about', priority: '0.8', changefreq: 'monthly' },
   { url: '/contact', priority: '0.8', changefreq: 'monthly' },
   { url: '/products', priority: '0.9', changefreq: 'weekly' },
-  ...uniqueProductIds.map((id) => ({ url: `/product/${id}`, priority: '0.7', changefreq: 'weekly' })),
+  ...productIds.map((id) => ({ url: `/product/${id}`, priority: '0.7', changefreq: 'weekly' })),
 ];
 
 const lastmod = new Date().toISOString().slice(0, 10);
@@ -49,3 +56,7 @@ main().catch((err) => {
   console.error('Failed to generate sitemap:', err);
   process.exit(1);
 });
+
+// Note: main() catches API failures gracefully and generates
+// a sitemap with static pages only — the process never exits 1
+// just because the products API is unreachable.
