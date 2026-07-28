@@ -2,9 +2,10 @@ import {
   createContext,
   useContext,
   useState,
+  useEffect,
   type ReactNode,
 } from 'react';
-import { PRODUCTS, CATEGORIES, getDisplayCategory, productMatchesCategory } from '../utils/api';
+import { CATEGORIES, getDisplayCategory, productMatchesCategory, fetchProducts } from '../utils/api';
 import type { Product } from '../types';
 
 
@@ -23,6 +24,7 @@ interface SearchContextValue {
   categories: string[];
   loading: boolean;
   error: string | null;
+  refetch: () => void;
 }
 
 const SearchContext = createContext<SearchContextValue | null>(null);
@@ -32,20 +34,35 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState<SortOption>('featured');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
-  const [products] = useState<Product[]>(() => {
-    const seenImages = new Set<string>();
-
-    return PRODUCTS.filter((product) => {
-      if (typeof product.image !== 'string' || product.image.trim() === '') return false;
-      if (seenImages.has(product.image)) return false;
-
-      seenImages.add(product.image);
-      return true;
-    });
-  });
+  const [products, setProducts] = useState<Product[]>([]);
   const [categories] = useState<string[]>(CATEGORIES);
-  const [loading] = useState(false);
-  const [error] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const loadProducts = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const all = await fetchProducts();
+      // Deduplicate by image (same logic as before)
+      const seenImages = new Set<string>();
+      const deduped = all.filter((p) => {
+        if (typeof p.image !== 'string' || p.image.trim() === '') return false;
+        if (seenImages.has(p.image)) return false;
+        seenImages.add(p.image);
+        return true;
+      });
+      setProducts(deduped);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load products');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
 
   const filtered = products.filter((p) => {
     const matchesQuery =
@@ -80,12 +97,15 @@ export function SearchProvider({ children }: { children: ReactNode }) {
         categories,
         loading,
         error,
+        refetch: loadProducts,
       }}
     >
       {children}
     </SearchContext.Provider>
   );
 }
+
+export { fetchProducts }; // re-export for convenience
 
 export function useSearch(): SearchContextValue {
   const ctx = useContext(SearchContext);

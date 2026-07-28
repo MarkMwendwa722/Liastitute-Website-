@@ -51,7 +51,7 @@ const SLIDES = [
   },
   {
     badge: { icon: ChefHat, color: 'text-orange-300', label: 'Best Deals' },
-    headline: ['Over 14 Products', 'Kitchen Equipment'],
+    headline: ['Top Quality', 'Kitchen Equipment'],
     headlineAccent: 1,
     body: 'Find everything you need to equip your kitchen with top-quality appliances.',
     cta: { label: 'Shop Kitchen', category: 'Kitchen & Commercial Equipment' },

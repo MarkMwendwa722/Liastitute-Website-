@@ -12,7 +12,7 @@ export default defineConfig({
     allowedHosts: ['liastitute-website.onrender.com'],
     proxy: {
       '/api': {
-        target: 'http://localhost:8787',
+        target: 'https://lijustore.co.ke',
         changeOrigin: true,
       },
     },

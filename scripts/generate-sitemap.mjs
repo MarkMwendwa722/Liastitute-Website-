@@ -1,14 +1,21 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
+const API_URL = process.env.VITE_API_BASE_URL || 'https://lijustore.co.ke';
 const siteUrl = process.env.VITE_SITE_URL || 'https://lijustore.co.ke';
 const root = process.cwd();
-const productsFile = resolve(root, 'src/utils/api.ts');
 const outputFile = resolve(root, 'public/sitemap.xml');
 
-const source = readFileSync(productsFile, 'utf8');
-const productIds = [...source.matchAll(/\bid:\s*(\d+)/g)].map((match) => match[1]);
-const uniqueProductIds = [...new Set(productIds)];
+async function main() {
+  const url = `${API_URL.replace(/\/$/, '')}/api/products?limit=100`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`API error: ${res.status} ${res.statusText}`);
+  const json = await res.json();
+  if (!json.success || !Array.isArray(json.data)) {
+    throw new Error('Unexpected API response shape');
+  }
+
+  const uniqueProductIds = json.data.map((p) => p.externalId || p.id);
 
 const pages = [
   { url: '/', priority: '1.0', changefreq: 'daily' },
@@ -36,3 +43,9 @@ ${pages
 
 writeFileSync(outputFile, sitemap, 'utf8');
 console.log(`Wrote sitemap with ${pages.length} URLs to ${outputFile}`);
+}
+
+main().catch((err) => {
+  console.error('Failed to generate sitemap:', err);
+  process.exit(1);
+});
