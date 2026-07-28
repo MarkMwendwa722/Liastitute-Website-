@@ -1,9 +1,6 @@
 RewriteEngine On
 RewriteBase /
 
-# Proxy API requests to the backend server
-RewriteRule ^api/(.*)$ https://liastute-backend.onrender.com/api/$1 [P,L]
-
 # If the requested file or directory exists, serve it directly
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
