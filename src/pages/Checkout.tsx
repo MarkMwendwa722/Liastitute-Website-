@@ -108,6 +108,30 @@ export default function CheckoutPage() {
     }
   };
 
+  const placeApiOrder = async (orderItems: CartItem[], orderTotal: number) => {
+    const apiUrl = `${API_BASE_URL.replace(/\/$/, '')}/api/orders`;
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        orderId: orderNumber,
+        customer: details,
+        items: orderItems.map((item) => ({
+          productId: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+        })),
+        paymentMethod: selectedPayment.label,
+        orderTotal,
+      }),
+    });
+    if (!res.ok) {
+      const result = await res.json().catch(() => ({}));
+      throw new Error(result.error || `Order API error: ${res.status}`);
+    }
+  };
+
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting || !detailsComplete) return;
@@ -118,9 +142,14 @@ export default function CheckoutPage() {
     setSubmitError(null);
 
     try {
+      // Send order to the backend API
+      await placeApiOrder(orderItems, orderTotal);
+      // Also send the email notification
       await sendOrderEmail(orderItems, orderTotal);
-    } catch {
-      setSubmitError("We could not send the order email. Please try again.");
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      );
       setIsSubmitting(false);
       return;
     }
