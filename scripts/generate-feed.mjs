@@ -15,7 +15,7 @@ function escapeXml(str) {
 }
 
 async function main() {
-  const url = 'https://lijustore.co.ke/api/products?limit=100';
+  const url = 'https://api.lijustore.co.ke/api/products?limit=100';
 
   let items = [];
   try {

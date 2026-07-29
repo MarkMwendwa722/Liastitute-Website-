@@ -1,5 +1,5 @@
 // Utility to get the API base URL dynamically
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://lijustore.co.ke'; // Default to production API if not set
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.lijustore.co.ke';
 
 // Public category groups shown throughout the storefront.
 export const CATEGORIES = [

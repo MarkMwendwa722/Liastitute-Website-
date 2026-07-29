@@ -8,7 +8,7 @@ const outputFile = resolve(root, 'public/sitemap.xml');
 /** Try to fetch product IDs from the API. If unavailable, return empty array. */
 async function fetchProductIds() {
   try {
-    const res = await fetch('https://lijustore.co.ke/api/products?limit=100', {
+    const res = await fetch('https://api.lijustore.co.ke/api/products?limit=100', {
       signal: AbortSignal.timeout(10_000),
     });
     if (!res.ok) return [];
