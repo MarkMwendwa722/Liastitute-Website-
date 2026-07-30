@@ -1,5 +1,8 @@
+'use client'
+
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ShoppingCart,
   Search,
@@ -21,7 +24,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [catMenuOpen, setCatMenuOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
   const searchRef = useRef<HTMLDivElement>(null);
   const trimmedQuery = query.trim().toLowerCase();
   const searchSuggestions = trimmedQuery
@@ -38,7 +41,7 @@ export default function Header() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate(
+    router.push(
       query.trim()
         ? `/products?q=${encodeURIComponent(query.trim())}`
         : "/products",
@@ -49,13 +52,13 @@ export default function Header() {
     setSelectedCategory(cat);
     setCatMenuOpen(false);
     setMenuOpen(false);
-    navigate("/products");
+    router.push("/products");
   };
 
   const goToProduct = (id: number) => {
     setMenuOpen(false);
     setSearchFocused(false);
-    navigate(`/product/${id}`);
+    router.push(`/product/${id}`);
   };
 
   useEffect(() => {
@@ -75,7 +78,7 @@ export default function Header() {
         <div ref={searchRef} className="relative max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center gap-3 md:gap-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center shrink-0 no-underline">
+            <Link href="/" className="flex items-center shrink-0 no-underline">
               <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-brand shadow-md">
                 <img
                   src="/logo.jpeg"
@@ -126,13 +129,13 @@ export default function Header() {
             {/* Actions */}
             <div className="flex items-center gap-1 shrink-0 ml-auto">
               <Link
-                to="/wishlist"
+                href="/wishlist"
                 className="hidden sm:inline-flex p-2 rounded-full text-gray-600 hover:bg-gray-100 hover:text-brand transition-colors"
               >
                 <Heart size={22} />
               </Link>
               <Link
-                to="/cart"
+                href="/cart"
                 className="relative p-2 rounded-full bg-blue-50 text-brand hover:bg-blue-100 transition-colors"
               >
                 <ShoppingCart size={22} />
@@ -232,7 +235,7 @@ export default function Header() {
                   onClick={() => {
                     setMenuOpen(false);
                     setSearchFocused(false);
-                    navigate(
+                    router.push(
                       trimmedQuery
                         ? `/products?q=${encodeURIComponent(query.trim())}`
                         : "/products",
@@ -278,14 +281,14 @@ export default function Header() {
           </div>
 
           {[
-            { label: "Home", to: "/" },
-            { label: "About", to: "/about" },
-            { label: "Shop", to: "/products" },
-            { label: "Contact", to: "/contact" },
+            { label: "Home", href: "/" },
+            { label: "About", href: "/about" },
+            { label: "Shop", href: "/products" },
+            { label: "Contact", href: "/contact" },
           ].map((link) => (
             <Link
-              key={link.to}
-              to={link.to}
+              key={link.href}
+              href={link.href}
               onClick={() => setMenuOpen(false)}
               className="w-full md:w-auto px-4 py-2.5 text-gray-300 hover:text-white hover:bg-white/10 rounded text-sm font-medium transition-colors"
             >

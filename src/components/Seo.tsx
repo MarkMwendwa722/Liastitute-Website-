@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react';
 
 interface SeoProps {
@@ -10,7 +12,7 @@ interface SeoProps {
 }
 
 const SITE_NAME = 'Lijustore';
-const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://lijustore.co.ke';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://lijustore.co.ke';
 
 export default function Seo({
   title,

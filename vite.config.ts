@@ -17,4 +17,10 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    outDir: 'dist/client',
+  },
+  ssr: {
+    noExternal: true,
+  },
 })

@@ -1,16 +1,8 @@
-import Link from 'next/link';
-import Seo from '../components/Seo';
+import Link from 'next/link'
 
-export default function NotFoundPage() {
+export default function NotFound() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4">
-      <Seo
-        title="Page Not Found"
-        description="The page you are looking for does not exist on Lijustore."
-        canonicalPath="/404"
-        noindex
-        nofollow
-      />
       <div className="text-center">
         <p className="text-8xl font-black text-gray-100 mb-4">404</p>
         <h2 className="text-2xl font-black text-navy mb-3">Page Not Found</h2>
@@ -23,5 +15,5 @@ export default function NotFoundPage() {
         </Link>
       </div>
     </div>
-  );
+  )
 }

@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client'
+
+import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { useSearch } from '../context/SearchContext';
 
@@ -62,17 +64,17 @@ export default function Footer() {
           <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-4">Quick Links</h4>
           <ul className="space-y-2 text-sm">
             {[
-              { label: 'Home', to: '/' },
-              { label: 'About Us', to: '/about' },
-              { label: 'All Products', to: '/products' },
-              { label: 'Contact Us', to: '/contact' },
-              { label: 'Return Policy', to: '/returns' },
-              { label: 'Shopping Cart', to: '/cart' },
-              { label: 'My Account', to: '/account' },
-              { label: 'Wishlist', to: '/wishlist' },
+              { label: 'Home', href: '/' },
+              { label: 'About Us', href: '/about' },
+              { label: 'All Products', href: '/products' },
+              { label: 'Contact Us', href: '/contact' },
+              { label: 'Return Policy', href: '/returns' },
+              { label: 'Shopping Cart', href: '/cart' },
+              { label: 'My Account', href: '/account' },
+              { label: 'Wishlist', href: '/wishlist' },
             ].map((link) => (
-              <li key={link.to}>
-                <Link to={link.to} className="text-gray-400 hover:text-brand transition-colors no-underline">
+              <li key={link.href}>
+                <Link href={link.href} className="text-gray-400 hover:text-brand transition-colors no-underline">
                   {link.label}
                 </Link>
               </li>
@@ -86,7 +88,7 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             {footerCategories.map((cat) => (
               <li key={cat}>
-                <Link to={`/products?cat=${encodeURIComponent(cat)}`} className="text-gray-400 hover:text-brand transition-colors no-underline">
+                <Link href={`/products?cat=${encodeURIComponent(cat)}`} className="text-gray-400 hover:text-brand transition-colors no-underline">
                   {cat}
                 </Link>
               </li>

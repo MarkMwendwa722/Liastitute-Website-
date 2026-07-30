@@ -1,4 +1,4 @@
-name: Deploy to HostPinnacle
+name: Build & Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,29 +22,17 @@ jobs:
         run: npm ci
 
       - name: Clean
-        run: rm -rf dist node_modules/.vite
+        run: rm -rf .next
 
-      - name: Build Vite project
+      - name: Build Next.js
         run: npm run build
         env:
-          VITE_API_BASE_URL: https://api.lijustore.co.ke
-          VITE_RESEND_EMAIL_ENDPOINT: ${{ secrets.VITE_RESEND_EMAIL_ENDPOINT }}
-          VITE_ORDER_EMAIL: ${{ secrets.VITE_ORDER_EMAIL }}
-          VITE_RESEND_FROM_EMAIL: ${{ secrets.VITE_RESEND_FROM_EMAIL }}
-          VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
-          VITE_CONTACT_EMAIL: ${{ secrets.VITE_CONTACT_EMAIL }}
+          NEXT_PUBLIC_API_BASE_URL: https://api.lijustore.co.ke
+          NEXT_PUBLIC_SITE_URL: https://lijustore.co.ke
+          NEXT_PUBLIC_ORDER_EMAIL: ${{ secrets.NEXT_PUBLIC_ORDER_EMAIL }}
+          NEXT_PUBLIC_RESEND_FROM_EMAIL: ${{ secrets.NEXT_PUBLIC_RESEND_FROM_EMAIL }}
+          NEXT_PUBLIC_CONTACT_EMAIL: ${{ secrets.NEXT_PUBLIC_CONTACT_EMAIL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
 
-      - name: List dist files
-        run: |
-          ls -la dist
-          ls -la dist/assets
-    
-      - name: Upload dist folder via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /public_html/
-          dangerous-clean-slate: true
+      # Railway auto-deploys from the GitHub repo when connected.
+      # Connect your repo at https://railway.app to enable auto-deploy.

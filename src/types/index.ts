@@ -1,5 +1,6 @@
 export interface Product {
   id: number;
+  productId: string; // MongoDB _id from the API
   name: string;
   price: number;
   originalPrice: number | null;

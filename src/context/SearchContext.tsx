@@ -1,3 +1,5 @@
+'use client'
+
 import {
   createContext,
   useContext,
@@ -109,6 +111,25 @@ export { fetchProducts }; // re-export for convenience
 
 export function useSearch(): SearchContextValue {
   const ctx = useContext(SearchContext);
-  if (!ctx) throw new Error('useSearch must be used within SearchProvider');
+  if (!ctx) {
+    if (typeof window === 'undefined') {
+      return {
+        query: '',
+        setQuery: () => {},
+        selectedCategory: 'All',
+        setSelectedCategory: () => {},
+        sortBy: 'featured',
+        setSortBy: () => {},
+        priceRange: [0, 100000],
+        setPriceRange: () => {},
+        filteredProducts: [],
+        categories: [],
+        loading: true,
+        error: null,
+        refetch: async () => {},
+      };
+    }
+    throw new Error('useSearch must be used within SearchProvider');
+  }
   return ctx;
 }

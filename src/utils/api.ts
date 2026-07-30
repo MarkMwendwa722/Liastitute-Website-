@@ -1,5 +1,5 @@
 // Utility to get the API base URL dynamically
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.lijustore.co.ke';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.lijustore.co.ke';
 
 // Public category groups shown throughout the storefront.
 export const CATEGORIES = [
@@ -90,6 +90,7 @@ export function transformApiProduct(apiProduct: import('../types').ApiProduct): 
 
   return {
     id: Number(apiProduct.externalId) || 0,
+    productId: apiProduct._id,
     name: apiProduct.name,
     price: apiProduct.price,
     originalPrice: apiProduct.comparePrice ?? null,

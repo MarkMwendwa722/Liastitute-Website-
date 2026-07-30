@@ -1,3 +1,5 @@
+'use client'
+
 import {
   createContext,
   useContext,
@@ -123,6 +125,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
 export function useCart(): CartContextValue {
   const ctx = useContext(CartContext);
-  if (!ctx) throw new Error('useCart must be used within CartProvider');
+  if (!ctx) {
+    // Return a default/empty context during SSR / prerendering
+    if (typeof window === 'undefined') {
+      return {
+        items: [],
+        addToCart: () => {},
+        removeFromCart: () => {},
+        updateQuantity: () => {},
+        clearCart: () => {},
+        totalItems: 0,
+        totalPrice: 0,
+      };
+    }
+    throw new Error('useCart must be used within CartProvider');
+  }
   return ctx;
 }
