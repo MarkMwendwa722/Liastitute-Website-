@@ -62,6 +62,39 @@ const ProductDetail = () => {
     router.push('/checkout');
   };
 
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://lijustore.co.ke';
+  const productUrl = `${SITE_URL}/products/${product.id}`;
+  const imageUrl = product.image?.startsWith('http')
+    ? product.image
+    : `${SITE_URL}${product.image}`;
+
+  const jsonLd = {
+    '@context': 'https://schema.org/',
+    '@type': 'Product',
+    name: product.name,
+    image: imageUrl,
+    description: product.description,
+    sku: String(product.id),
+    brand: {
+      '@type': 'Brand',
+      name: 'Lijustore',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: productUrl,
+      priceCurrency: 'KES',
+      price: product.price.toFixed(2),
+      availability: product.stock > 0
+        ? 'https://schema.org/InStock'
+        : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: {
+        '@type': 'Organization',
+        name: 'Lijustore',
+      },
+    },
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-7 pb-16">
       <Seo
@@ -69,6 +102,11 @@ const ProductDetail = () => {
         description={product.description}
         canonicalPath={`/products/${product.id}`}
         image={product.image}
+      />
+      {/* JSON-LD structured data for rich search results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-gray-500 mb-7 flex-wrap">
