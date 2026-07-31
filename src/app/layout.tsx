@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import LayoutClient from './LayoutClient'
+import { fetchProducts } from '@/utils/api'
 
 const SITE_NAME = 'Lijustore'
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://lijustore.co.ke'
@@ -25,11 +26,31 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+// Cache products server-side for 5 minutes so every page load isn't blocked
+// by a slow API call. Keeps product data in the SSR HTML (SEO) while staying fast.
+let productsCache: { data: import('@/types').Product[]; at: number } | null = null
+const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
+
+async function getProducts() {
+  if (productsCache && Date.now() - productsCache.at < CACHE_TTL) {
+    return productsCache.data
+  }
+  try {
+    const data = await fetchProducts()
+    productsCache = { data, at: Date.now() }
+    return data
+  } catch {
+    return []
+  }
+}
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const products = await getProducts()
+
   return (
     <html lang="en">
       <head>
@@ -49,7 +70,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <LayoutClient>{children}</LayoutClient>
+        <LayoutClient initialProducts={products}>{children}</LayoutClient>
       </body>
     </html>
   )

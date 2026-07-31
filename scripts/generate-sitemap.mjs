@@ -29,7 +29,7 @@ const pages = [
   { url: '/about', priority: '0.8', changefreq: 'monthly' },
   { url: '/contact', priority: '0.8', changefreq: 'monthly' },
   { url: '/products', priority: '0.9', changefreq: 'weekly' },
-  ...productIds.map((id) => ({ url: `/product/${id}`, priority: '0.7', changefreq: 'weekly' })),
+  ...productIds.map((id) => ({ url: `/products/${id}`, priority: '0.7', changefreq: 'weekly' })),
 ];
 
 const lastmod = new Date().toISOString().slice(0, 10);

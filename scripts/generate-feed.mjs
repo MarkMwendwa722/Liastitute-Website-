@@ -38,7 +38,7 @@ async function main() {
       <g:id>${escapeXml(id)}</g:id>
       <g:title>${escapeXml(p.name)}</g:title>
       <g:description>${escapeXml(p.description)}</g:description>
-      <g:link>${siteUrl}/product/${escapeXml(id)}</g:link>
+      <g:link>${siteUrl}/products/${escapeXml(id)}</g:link>
       <g:image_link>${escapeXml(imageUrl)}</g:image_link>
       <g:price>${priceFormatted}</g:price>`;
 

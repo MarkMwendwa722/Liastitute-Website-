@@ -32,7 +32,7 @@ const ProductDetail = () => {
         <Seo
           title="Product Not Found"
           description="The requested product could not be found on Lijustore."
-          canonicalPath={`/product/${id ?? ''}`}
+          canonicalPath={`/products/${id ?? ''}`}
           noindex
         />
         <h2 className="text-2xl font-bold text-navy mb-4">Product not found</h2>
@@ -67,7 +67,7 @@ const ProductDetail = () => {
       <Seo
         title={product.name}
         description={product.description}
-        canonicalPath={`/product/${product.id}`}
+        canonicalPath={`/products/${product.id}`}
         image={product.image}
       />
       {/* Breadcrumb */}

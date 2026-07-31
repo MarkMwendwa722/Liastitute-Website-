@@ -58,7 +58,7 @@ export default function Header() {
   const goToProduct = (id: number) => {
     setMenuOpen(false);
     setSearchFocused(false);
-    router.push(`/product/${id}`);
+    router.push(`/products/${id}`);
   };
 
   useEffect(() => {

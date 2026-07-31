@@ -109,7 +109,9 @@ export function transformApiProduct(apiProduct: import('../types').ApiProduct): 
  */
 export async function fetchProducts(): Promise<import('../types').Product[]> {
   const url = `${API_BASE_URL.replace(/\/$/, '')}/api/products?limit=100`;
-  const res = await fetch(url);
+  // `next.revalidate` is used by Next.js server components to cache the fetch;
+  // browsers/clients ignore it.
+  const res = await fetch(url, { next: { revalidate: 300 } });
   if (!res.ok) throw new Error(`Failed to fetch products: ${res.status} ${res.statusText}`);
   const json: import('../types').ApiResponse = await res.json();
   if (!json.success) throw new Error('API returned unsuccessful response');

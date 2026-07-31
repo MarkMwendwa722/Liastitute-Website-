@@ -74,14 +74,14 @@ export default function CartPage() {
               key={item.id}
               className="grid grid-cols-1 sm:grid-cols-[80px_1fr_auto] gap-4 px-5 py-5 border-b border-gray-100 last:border-0 items-start sm:items-center"
             >
-              <Link href={`/product/${item.id}`} className="block rounded-xl overflow-hidden w-20 h-20">
+              <Link href={`/products/${item.id}`} className="block rounded-xl overflow-hidden w-20 h-20">
                 <img src={item.image} alt={item.name} className="w-20 h-20 object-cover block" />
               </Link>
 
               <div className="flex flex-col gap-1 min-w-0">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-brand">{getDisplayCategory(item.category)}</span>
                 <Link
-                  href={`/product/${item.id}`}
+                  href={`/products/${item.id}`}
                   className="text-sm font-semibold text-navy no-underline hover:text-brand line-clamp-2 leading-snug"
                 >
                   {item.name}

@@ -31,14 +31,20 @@ interface SearchContextValue {
 
 const SearchContext = createContext<SearchContextValue | null>(null);
 
-export function SearchProvider({ children }: { children: ReactNode }) {
+export function SearchProvider({
+  children,
+  initialProducts = [],
+}: {
+  children: ReactNode;
+  initialProducts?: Product[];
+}) {
   const [query, setQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState<SortOption>('featured');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>(initialProducts);
   const [categories] = useState<string[]>(CATEGORIES);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(initialProducts.length === 0);
   const [error, setError] = useState<string | null>(null);
 
   const loadProducts = async () => {
@@ -63,7 +69,10 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    loadProducts();
+    // Only fetch client-side when there are no server-provided products
+    if (initialProducts.length === 0) {
+      loadProducts();
+    }
   }, []);
 
   const filtered = products.filter((p) => {
