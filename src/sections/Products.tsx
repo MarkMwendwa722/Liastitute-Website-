@@ -62,7 +62,7 @@ export default function ProductsPage() {
   const productsJsonLd = hasSearchFilters
     ? []
     : [
-        productListJsonLd(filteredProducts.slice(0, 30), 'Lijustore Products'),
+        productListJsonLd(filteredProducts, 'Lijustore Products'),
         productListingBreadcrumbJsonLd(),
       ];
 
