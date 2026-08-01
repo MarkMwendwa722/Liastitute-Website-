@@ -6,6 +6,7 @@ import { SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import Seo from '../components/Seo';
 import { useSearch } from '../context/SearchContext';
+import { productListJsonLd, productListingBreadcrumbJsonLd } from '../utils/jsonLd';
 // categories now comes from useSearch context
 
 const SORT_OPTIONS = [
@@ -56,6 +57,15 @@ export default function ProductsPage() {
 
   const hasSearchFilters = (searchParams?.toString().length ?? 0) > 0;
 
+  // Structured data for SEO — only on the unfiltered listing page so filtered
+  // search views don't push noisy/duplicate product markup to search engines.
+  const productsJsonLd = hasSearchFilters
+    ? []
+    : [
+        productListJsonLd(filteredProducts.slice(0, 30), 'Lijustore Products'),
+        productListingBreadcrumbJsonLd(),
+      ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 pb-16 min-h-[70vh]">
       <Seo
@@ -63,6 +73,7 @@ export default function ProductsPage() {
         description="Browse Lijustore products by category, price, rating, and search terms."
         canonicalPath="/products"
         noindex={hasSearchFilters}
+        jsonLd={productsJsonLd}
       />
       <div className="flex gap-7 items-start">
 

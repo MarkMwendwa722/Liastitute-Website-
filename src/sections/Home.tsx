@@ -7,6 +7,7 @@ import { ArrowRight, Truck, RotateCcw, ShieldCheck, Headphones, Flame, Laptop, H
 import ProductCard from '../components/ProductCard';
 import Seo from '../components/Seo';
 import { useSearch } from '../context/SearchContext';
+import { organizationJsonLd, productListJsonLd, webSiteJsonLd } from '../utils/jsonLd';
 
 const FEATURES = [
   { Icon: Truck,        title: 'Free Shipping',   desc: 'On orders within CBD' },
@@ -113,6 +114,16 @@ export default function HomePage() {
   const onSale      = filteredProducts.filter((p) => p.badge === 'Sale');
   const topRated    = [...filteredProducts].sort((a, b) => b.rating - a.rating).slice(0, 8);
 
+  // Structured data for SEO (Organization + WebSite + featured ItemList)
+  const featuredJsonLd = [...bestsellers, ...topRated]
+    .filter((p, i, arr) => arr.findIndex((x) => x.id === p.id) === i)
+    .slice(0, 10);
+  const homeJsonLd = [
+    organizationJsonLd(),
+    webSiteJsonLd(),
+    productListJsonLd(featuredJsonLd, 'Featured Products'),
+  ];
+
   if (loading) return <div className="text-center py-24">Loading...</div>;
   if (error) return <div className="text-center py-24 text-red-500">{error}</div>;
 
@@ -122,6 +133,7 @@ export default function HomePage() {
         title="Lijustore Kenya | Home Appliances, Electronics, Furniture and More"
         description="Shop practical home appliances, electronics, kitchen equipment, furniture, tools, and daily essentials at Lijustore Kenya."
         canonicalPath="/"
+        jsonLd={homeJsonLd}
       />
       {/* ── Hero Carousel ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden">

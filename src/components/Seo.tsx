@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 interface SeoProps {
   title: string;
@@ -9,6 +9,7 @@ interface SeoProps {
   noindex?: boolean;
   nofollow?: boolean;
   image?: string;
+  jsonLd?: object | object[];
 }
 
 const SITE_NAME = 'Lijustore';
@@ -21,7 +22,12 @@ export default function Seo({
   noindex = false,
   nofollow = false,
   image = '/logo.jpeg',
+  jsonLd,
 }: SeoProps) {
+  // Serialize JSON-LD to a stable key so the effect only re-runs when the
+  // actual structured data content changes (not on every render).
+  const jsonLdKey = useMemo(() => JSON.stringify(jsonLd ?? null), [jsonLd]);
+
   useEffect(() => {
     const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
     const canonicalUrl = new URL(canonicalPath, SITE_URL).toString();
@@ -41,7 +47,22 @@ export default function Seo({
     setMeta('twitter:description', description);
     setMeta('twitter:image', imageUrl);
     setCanonical(canonicalUrl);
-  }, [canonicalPath, description, image, nofollow, noindex, title]);
+
+    // JSON-LD structured data
+    const scripts = jsonLdKey
+      ? (JSON.parse(jsonLdKey) as object[]).map((schema) => {
+          const script = document.createElement('script');
+          script.type = 'application/ld+json';
+          script.textContent = JSON.stringify(schema);
+          document.head.appendChild(script);
+          return script;
+        })
+      : [];
+
+    return () => {
+      scripts.forEach((script) => script.remove());
+    };
+  }, [canonicalPath, description, image, jsonLdKey, nofollow, noindex, title]);
 
   return null;
 }
