@@ -48,16 +48,20 @@ export default function Seo({
     setMeta('twitter:image', imageUrl);
     setCanonical(canonicalUrl);
 
-    // JSON-LD structured data
-    const scripts = jsonLdKey
-      ? (JSON.parse(jsonLdKey) as object[]).map((schema) => {
-          const script = document.createElement('script');
-          script.type = 'application/ld+json';
-          script.textContent = JSON.stringify(schema);
-          document.head.appendChild(script);
-          return script;
-        })
-      : [];
+    // JSON-LD structured data.
+    // NOTE: when `jsonLd` is not passed, jsonLdKey is the string "null"
+    // (JSON.stringify(null)), which is truthy — so guard against parsing null
+    // and normalize a single object to an array before calling .map().
+    const parsed = jsonLdKey && jsonLdKey !== 'null' ? JSON.parse(jsonLdKey) : null;
+    const schemas: object[] = parsed == null ? [] : Array.isArray(parsed) ? parsed : [parsed];
+
+    const scripts = schemas.map((schema) => {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(schema);
+      document.head.appendChild(script);
+      return script;
+    });
 
     return () => {
       scripts.forEach((script) => script.remove());
