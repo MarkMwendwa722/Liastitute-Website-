@@ -10,8 +10,7 @@ export default function CartPage() {
   const { items, removeFromCart, updateQuantity, totalPrice, totalItems, clearCart } = useCart();
 
   const shipping   = totalPrice >= 50 ? 0 : 5.99;
-  const tax        = totalPrice * 0.08;
-  const grandTotal = totalPrice + shipping + tax;
+  const grandTotal = totalPrice + shipping;
 
   if (items.length === 0) {
     return (
@@ -172,10 +171,6 @@ export default function CartPage() {
                 Add KSh {(50 - totalPrice).toFixed(2)} more for free shipping!
               </p>
             )}
-            <div className="flex justify-between text-gray-600">
-              <span>Tax (8%)</span>
-              <span>KSh {tax.toFixed(2)}</span>
-            </div>
           </div>
 
           <div className="border-t border-gray-100 mt-4 pt-4 mb-5">
