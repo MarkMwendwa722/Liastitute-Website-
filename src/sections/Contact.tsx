@@ -13,7 +13,7 @@ const CONTACT_ITEMS = [
   {
     icon: MapPin,
     title: 'Visit us',
-    text: 'Gaberone plaza, third floor shop T1 Nairobi, Kenya',
+    text: 'Gaberone plaza, third floor shop T3L Nairobi, Kenya',
   },
   {
     icon: Phone,

@@ -6,17 +6,9 @@ import { AlertCircle, Check, MapPin } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import type { CartItem } from "../types";
 import Seo from '../components/Seo';
-import {
-  buildOrderEmailHtml,
-  buildOrderEmailSubject,
-} from "../utils/orderEmail";
 
-const ORDER_EMAIL = process.env.NEXT_PUBLIC_ORDER_EMAIL || "kobiajohn7@gmail.com";
-const RESEND_FROM_EMAIL =
-  process.env.NEXT_PUBLIC_RESEND_FROM_EMAIL || "info@lijustore.co.ke";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.lijustore.co.ke";
-const EMAIL_ENDPOINT = "/api/send-email";
-const SHOP_LOCATION = "Gaberone plaza, third floor shop T3 Nairobi, Kenya";
+const SHOP_LOCATION = "Gaberone plaza, third floor shop T3L Nairobi, Kenya";
 
 const SHIPMENT_NOTES = [
   {
@@ -51,6 +43,49 @@ interface CheckoutDetails {
   notes: string;
 }
 
+const TRACKING_FIELDS = [
+  'trackingNumber',
+  'tracking_number',
+  'orderNumber',
+  'order_number',
+  'orderId',
+  'order_id',
+  'id',
+  '_id',
+] as const;
+
+function extractOrderTrackingNumber(response: unknown): string | null {
+  const findField = (value: unknown): string | null => {
+    if (!value || typeof value !== 'object') return null;
+    const obj = value as Record<string, unknown>;
+    for (const field of TRACKING_FIELDS) {
+      const fieldValue = obj[field];
+      if (typeof fieldValue === 'string' && fieldValue.trim()) {
+        return fieldValue.trim();
+      }
+    }
+    return null;
+  };
+
+  const direct = findField(response);
+  if (direct) return direct;
+
+  // The API typically wraps results as { success, data: { order: {...} } }
+  if (response && typeof response === 'object') {
+    const data = (response as Record<string, unknown>).data;
+    const nested = findField(data);
+    if (nested) return nested;
+
+    const order = data && typeof data === 'object'
+      ? (data as Record<string, unknown>).order
+      : undefined;
+    const nestedOrder = findField(order);
+    if (nestedOrder) return nestedOrder;
+  }
+
+  return null;
+}
+
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -58,7 +93,10 @@ export default function CheckoutPage() {
   const [placedOrderItems, setPlacedOrderItems] = useState<CartItem[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [orderNumber] = useState(`LIA-${Date.now().toString().slice(-6)}`);
+  // Tracking number returned by the orders API once the order is booked.
+  const [orderNumber, setOrderNumber] = useState<string | null>(null);
+  // Client-generated reference sent with the request; only a fallback.
+  const [clientOrderId] = useState(() => `LIA-${Date.now().toString().slice(-6)}`);
   const [details, setDetails] = useState<CheckoutDetails>({
     name: "",
     townCity: "",
@@ -84,37 +122,13 @@ export default function CheckoutPage() {
     setDetails({ ...details, [e.target.name]: e.target.value });
   };
 
-  const sendOrderEmail = async (orderItems: CartItem[], orderTotal: number) => {
-    const response = await fetch(EMAIL_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from: RESEND_FROM_EMAIL,
-        to: ORDER_EMAIL,
-        subject: buildOrderEmailSubject(orderNumber),
-        html: buildOrderEmailHtml({
-          orderNumber,
-          customer: details,
-          items: orderItems,
-          paymentMethod: selectedPayment.label,
-          orderTotal,
-        }),
-      }),
-    });
-
-    if (!response.ok) {
-      const result = await response.json().catch(() => ({}));
-      throw new Error(result.error || "Order email could not be sent.");
-    }
-  };
-
   const placeApiOrder = async (orderItems: CartItem[], orderTotal: number) => {
     const apiUrl = `${API_BASE_URL}/api/orders`;
     const res = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        orderId: orderNumber,
+        orderId: clientOrderId,
         name: details.name,
         townCity: details.townCity,
         phoneNumber: details.phone,
@@ -134,6 +148,7 @@ export default function CheckoutPage() {
       const result = await res.json().catch(() => ({}));
       throw new Error(result.error || `Order API error: ${res.status}`);
     }
+    return res.json();
   };
 
   const handlePlaceOrder = async (e: React.FormEvent) => {
@@ -147,9 +162,9 @@ export default function CheckoutPage() {
 
     try {
       // Send order to the backend API
-      await placeApiOrder(orderItems, orderTotal);
-      // Also send the email notification
-      await sendOrderEmail(orderItems, orderTotal);
+      const apiResult = await placeApiOrder(orderItems, orderTotal);
+      // Pull the tracking number from the API response once booked
+      setOrderNumber(extractOrderTrackingNumber(apiResult) || clientOrderId);
     } catch (err) {
       setSubmitError(
         err instanceof Error ? err.message : "Something went wrong. Please try again.",
@@ -205,7 +220,9 @@ export default function CheckoutPage() {
           <h2 className="text-2xl font-black text-navy mb-1">
             Order Received!
           </h2>
-          <p className="text-brand font-bold mb-4">Order #{orderNumber}</p>
+          <p className="text-brand font-bold mb-4">
+            Order #{orderNumber ?? clientOrderId}
+          </p>
           <p className="text-gray-500 text-sm mb-4">
             Thank you, <strong>{details.name}</strong>. Someone from Lijustore
             will reach out to you on <strong>{details.phone}</strong> to discuss

@@ -163,7 +163,7 @@ export default function ReturnPolicyPage() {
                 <strong>Email:</strong> info@lijustore.co.ke
               </p>
               <p>
-                <strong>Visit us:</strong> Gaberone plaza, third floor shop T1, Nairobi, Kenya
+                <strong>Visit us:</strong> Gaberone plaza, third floor shop T3L, Nairobi, Kenya
               </p>
             </div>
           </div>
