@@ -8,7 +8,6 @@ import {
   Search,
   Menu,
   X,
-  Heart,
   ChevronDown,
   ChevronRight,
   Flame,
@@ -128,12 +127,6 @@ export default function Header() {
 
             {/* Actions */}
             <div className="flex items-center gap-1 shrink-0 ml-auto">
-              <Link
-                href="/wishlist"
-                className="hidden sm:inline-flex p-2 rounded-full text-gray-600 hover:bg-gray-100 hover:text-brand transition-colors"
-              >
-                <Heart size={22} />
-              </Link>
               <Link
                 href="/cart"
                 className="relative p-2 rounded-full bg-blue-50 text-brand hover:bg-blue-100 transition-colors"

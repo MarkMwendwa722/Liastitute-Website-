@@ -70,8 +70,6 @@ export default function Footer() {
               { label: 'Contact Us', href: '/contact' },
               { label: 'Return Policy', href: '/returns' },
               { label: 'Shopping Cart', href: '/cart' },
-              { label: 'My Account', href: '/account' },
-              { label: 'Wishlist', href: '/wishlist' },
             ].map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="text-gray-400 hover:text-brand transition-colors no-underline">

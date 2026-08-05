@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Heart, Star } from 'lucide-react';
+import { ShoppingCart, Star } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { getDisplayCategory } from '../utils/api';
 import type { Product } from '../types';
@@ -56,17 +56,10 @@ export default function ProductCard({ product }: Props) {
           </span>
         )}
         {discount && (
-          <span className="absolute top-2.5 right-9 bg-navy text-white text-[10px] font-bold px-2 py-1 rounded-full">
+          <span className="absolute top-2.5 right-2.5 bg-navy text-white text-[10px] font-bold px-2 py-1 rounded-full">
             -{discount}%
           </span>
         )}
-        <button
-          title="Add to wishlist"
-          onClick={(e) => e.preventDefault()}
-          className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-brand shadow opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200"
-        >
-          <Heart size={16} />
-        </button>
       </div>
 
       {/* Info */}

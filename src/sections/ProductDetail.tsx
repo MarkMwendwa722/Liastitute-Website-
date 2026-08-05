@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
-  ShoppingCart, Heart, Star, ArrowLeft,
+  ShoppingCart, Star, ArrowLeft,
   Check, Truck, RotateCcw, ShieldCheck,
 } from 'lucide-react';
 import { useSearch } from '../context/SearchContext';
@@ -221,13 +221,6 @@ const ProductDetail = () => {
               }`}
             >
               {addedMsg ? <><Check size={18}/> Added!</> : <><ShoppingCart size={18}/> Add to Cart</>}
-            </button>
-
-            <button
-              className="w-12 h-12 rounded-xl border-2 border-gray-200 flex items-center justify-center text-gray-400 hover:border-brand hover:text-brand transition-colors"
-              title="Add to wishlist"
-            >
-              <Heart size={19} />
             </button>
           </div>
 
