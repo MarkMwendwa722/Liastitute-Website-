@@ -6,8 +6,12 @@ import { AlertCircle, Check, MapPin } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import type { CartItem } from "../types";
 import Seo from '../components/Seo';
+import { buildOrderEmailHtml, buildOrderEmailSubject } from '../utils/orderEmail';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.lijustore.co.ke";
+const EMAIL_ENDPOINT = `${API_BASE_URL}/api/send-email`;
+const ORDER_EMAIL = process.env.NEXT_PUBLIC_ORDER_EMAIL || 'kobiajohn7@gmail.com';
+const RESEND_FROM_EMAIL = process.env.NEXT_PUBLIC_RESEND_FROM_EMAIL || 'info@lijustore.co.ke';
 const SHOP_LOCATION = "Gaberone plaza, third floor shop T3L Nairobi, Kenya";
 
 const SHIPMENT_NOTES = [
@@ -151,6 +155,36 @@ export default function CheckoutPage() {
     return res.json();
   };
 
+  const sendOrderEmail = async (orderNumber: string, orderItems: CartItem[], orderTotal: number) => {
+    const response = await fetch(EMAIL_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: RESEND_FROM_EMAIL,
+        to: ORDER_EMAIL,
+        subject: buildOrderEmailSubject(orderNumber),
+        html: buildOrderEmailHtml({
+          orderNumber,
+          customer: {
+            name: details.name,
+            phone: details.phone,
+            email: details.email,
+            townCity: details.townCity,
+            notes: details.notes,
+          },
+          items: orderItems,
+          paymentMethod: selectedPayment.label,
+          orderTotal,
+        }),
+      }),
+    });
+    if (!response.ok) {
+      const result = await response.json().catch(() => ({}));
+      throw new Error(result.error || `Email API error: ${response.status}`);
+    }
+    return response.json();
+  };
+
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting || !detailsComplete) return;
@@ -164,7 +198,15 @@ export default function CheckoutPage() {
       // Send order to the backend API
       const apiResult = await placeApiOrder(orderItems, orderTotal);
       // Pull the tracking number from the API response once booked
-      setOrderNumber(extractOrderTrackingNumber(apiResult) || clientOrderId);
+      const finalOrderNumber = extractOrderTrackingNumber(apiResult) || clientOrderId;
+      setOrderNumber(finalOrderNumber);
+      // Re-added: email the new order to the shop via the send-email API.
+      // Best-effort — the order is already booked, so don't block placement if the email fails.
+      try {
+        await sendOrderEmail(finalOrderNumber, orderItems, orderTotal);
+      } catch {
+        // Email failure should not fail the order.
+      }
     } catch (err) {
       setSubmitError(
         err instanceof Error ? err.message : "Something went wrong. Please try again.",

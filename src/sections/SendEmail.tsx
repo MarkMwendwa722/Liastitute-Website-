@@ -8,7 +8,7 @@ import { useCart } from '../context/CartContext';
 import { buildOrderEmailHtml, buildOrderEmailSubject } from '../utils/orderEmail';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.lijustore.co.ke';
-const EMAIL_ENDPOINT = '/api/send-email';
+const EMAIL_ENDPOINT = `${API_BASE_URL}/api/send-email`;
 const ORDER_EMAIL = process.env.NEXT_PUBLIC_ORDER_EMAIL || 'kobiajohn7@gmail.com';
 const RESEND_FROM_EMAIL = process.env.NEXT_PUBLIC_RESEND_FROM_EMAIL || 'info@lijustore.co.ke';
 

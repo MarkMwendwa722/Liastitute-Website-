@@ -5,7 +5,7 @@ import { AlertCircle, CheckCircle2, Clock, Mail, MapPin, MessageSquare, Phone, S
 import Seo from '../components/Seo';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.lijustore.co.ke';
-const EMAIL_ENDPOINT = '/api/send-email';
+const EMAIL_ENDPOINT = `${API_BASE_URL}/api/send-email`;
 const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@lijustoreenterprises.co.ke';
 const RESEND_FROM_EMAIL = process.env.NEXT_PUBLIC_RESEND_FROM_EMAIL || 'info@lijustore.co.ke';
 
@@ -36,6 +36,7 @@ export default function ContactPage() {
   const [isSending, setIsSending] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 pb-16">
@@ -83,7 +84,10 @@ export default function ContactPage() {
               e.preventDefault();
               if (isSending) return;
 
-              const form = new FormData(e.currentTarget);
+              // Capture the element before any await — React nulls out
+              // e.currentTarget once the handler yields to the event loop.
+              const formEl = e.currentTarget;
+              const form = new FormData(formEl);
               const name = String(form.get('name') ?? '').trim();
               const email = String(form.get('email') ?? '').trim();
               const phone = String(form.get('phone') ?? '').trim();
@@ -112,8 +116,9 @@ export default function ContactPage() {
                   throw new Error(result.error || 'Message could not be sent.');
                 }
 
-                e.currentTarget.reset();
-                setMessage(result.id ? `Message sent successfully. Resend id: ${result.id}` : 'Message sent successfully.');
+                formEl.reset();
+                setMessage('Message sent successfully.');
+                setShowSuccess(true);
               } catch (err) {
                 setError(err instanceof Error ? err.message : 'Message could not be sent.');
               } finally {
@@ -192,6 +197,29 @@ export default function ContactPage() {
           </form>
         </div>
       </section>
+
+      {showSuccess && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+          <div className="w-full max-w-md rounded-3xl bg-white p-8 text-center shadow-2xl">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+              <CheckCircle2 size={32} className="text-green-600" />
+            </div>
+            <h3 className="mt-4 text-2xl font-black text-navy">
+              Message sent successfully!
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-gray-500">
+              Thank you for reaching out. We will get back to you soon.
+            </p>
+            <button
+              type="button"
+              onClick={() => setShowSuccess(false)}
+              className="mt-6 w-full rounded-full bg-brand px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-dark"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
