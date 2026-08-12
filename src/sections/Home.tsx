@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowRight, Truck, RotateCcw, ShieldCheck, Headphones, Flame, Laptop, Home as HomeIcon, Dumbbell, Sparkles, LayoutGrid, Tag, ChevronLeft, ChevronRight, Car, Droplets, Armchair, Baby, ChefHat, Lightbulb, Wifi, Camera, Sun, Gift, Plug } from 'lucide-react';
+import { ArrowRight, Truck, RotateCcw, ShieldCheck, Flame, Laptop, Home as HomeIcon, Dumbbell, Sparkles, LayoutGrid, Tag, ChevronLeft, ChevronRight, Car, Droplets, Armchair, Baby, ChefHat, Lightbulb, Wifi, Camera, Sun, Gift, Plug } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import Seo from '../components/Seo';
 import { useSearch } from '../context/SearchContext';
@@ -13,7 +13,6 @@ const FEATURES = [
   { Icon: Truck,        title: 'Free Shipping',   desc: 'On orders within CBD' },
   { Icon: RotateCcw,    title: 'Easy Returns',     desc: '30-day return policy' },
   { Icon: ShieldCheck,  title: 'Secure Payment',   desc: '256-bit SSL encryption' },
-  { Icon: Headphones,   title: '24/7 Support',     desc: 'Always here to help' },
 ];
 
 // Category icons mapping (optional, fallback to text if not found)

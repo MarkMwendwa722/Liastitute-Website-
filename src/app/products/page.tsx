@@ -1,11 +1,11 @@
-import { Suspense } from 'react'
 import ProductsPage from '@/sections/Products'
 
-export default function Products() {
-  return (
-    <Suspense fallback={<div className="text-center py-24">Loading...</div>}>
-      <ProductsPage />
-    </Suspense>
-  )
+export default async function Products({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string; cat?: string }>
+}) {
+  const { q, cat } = await searchParams
+  return <ProductsPage initialQuery={q ?? ''} initialCategory={cat ?? 'All'} />
 }
 

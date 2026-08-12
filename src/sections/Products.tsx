@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import Seo from '../components/Seo';
@@ -17,7 +16,13 @@ const SORT_OPTIONS = [
   { value: 'reviews',    label: 'Most Reviewed' },
 ] as const;
 
-export default function ProductsPage() {
+export default function ProductsPage({
+  initialQuery = '',
+  initialCategory = 'All',
+}: {
+  initialQuery?: string;
+  initialCategory?: string;
+}) {
   const {
     query, setQuery,
     selectedCategory, setSelectedCategory,
@@ -29,14 +34,13 @@ export default function ProductsPage() {
     error,
   } = useSearch();
 
-  const searchParams = useSearchParams();
-
+  // Apply URL query/category params (passed from the server page component)
+  // after hydration. Runs client-side only, so it never blocks server-side
+  // rendering — the full product grid stays in the initial HTML for SEO.
   useEffect(() => {
-    const q   = searchParams?.get('q');
-    const cat = searchParams?.get('cat');
-    if (q)   setQuery(q);
-    if (cat) setSelectedCategory(cat);
-  }, [searchParams]);
+    setQuery(initialQuery);
+    setSelectedCategory(initialCategory);
+  }, [initialQuery, initialCategory]);
 
   const clearFilters = () => {
     setQuery('');
@@ -55,7 +59,7 @@ export default function ProductsPage() {
   if (loading) return <div className="text-center py-24">Loading...</div>;
   if (error) return <div className="text-center py-24 text-red-500">{error}</div>;
 
-  const hasSearchFilters = (searchParams?.toString().length ?? 0) > 0;
+  const hasSearchFilters = Boolean(initialQuery) || initialCategory !== 'All';
 
   // Structured data for SEO — only on the unfiltered listing page so filtered
   // search views don't push noisy/duplicate product markup to search engines.
