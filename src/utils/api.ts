@@ -67,16 +67,39 @@ function deriveBadge(apiProduct: { isFeatured?: boolean; stock?: number }): stri
 /**
  * Convert a full image URL to a relative path so images load from the local
  * public/ folder instead of fetching from the production domain.
+ *
+ * Only images already hosted on the store's own domain (lijustore.co.ke) are
+ * localized, because those files are mirrored into public/. Images on other
+ * hosts (e.g. Cloudinary at res.cloudinary.com) are kept as absolute URLs so
+ * they keep loading instead of 404ing as a local path.
  */
 function toLocalImage(url: string): string {
   if (!url) return '';
   try {
     const parsed = new URL(url);
-    return parsed.pathname; // e.g. "/Photos/20260311_111103.jpg"
+    const host = parsed.hostname.replace(/^www\./, '').toLowerCase();
+    if (host === 'lijustore.co.ke') {
+      return parsed.pathname; // e.g. "/Photos/20260311_111103.jpg"
+    }
+    return url; // external host — keep the full URL (e.g. res.cloudinary.com)
   } catch {
     // Already a relative path or unrecognisable — use as-is
     return url;
   }
+}
+
+/**
+ * Derive a stable, unique numeric product id. Prefers the API's numeric
+ * `externalId`; when that is missing (e.g. a freshly added product) it falls
+ * back to a numeric derived from the MongoDB `_id` so the product still gets a
+ * real id instead of 0 (which duplicated React keys and broke detail links).
+ */
+function deriveProductId(apiProduct: import('../types').ApiProduct): number {
+  const ext = Number(apiProduct.externalId);
+  if (Number.isFinite(ext) && ext > 0) return ext;
+  const hex = (apiProduct._id || '').replace(/[^0-9a-f]/gi, '').slice(0, 13);
+  if (!hex) return 0;
+  return Number.parseInt(hex, 16);
 }
 
 /**
@@ -89,7 +112,7 @@ export function transformApiProduct(apiProduct: import('../types').ApiProduct): 
     : apiProduct.category?.name ?? 'General';
 
   return {
-    id: Number(apiProduct.externalId) || 0,
+    id: deriveProductId(apiProduct),
     productId: apiProduct._id,
     name: apiProduct.name,
     price: apiProduct.price,
@@ -115,5 +138,9 @@ export async function fetchProducts(): Promise<import('../types').Product[]> {
   if (!res.ok) throw new Error(`Failed to fetch products: ${res.status} ${res.statusText}`);
   const json: import('../types').ApiResponse = await res.json();
   if (!json.success) throw new Error('API returned unsuccessful response');
-  return json.data.map(transformApiProduct);
+  const products = json.data.map(transformApiProduct);
+  // Skip products the API returned without a usable image (empty imageUrl AND
+  // empty images array) so they never render as broken/empty image cards.
+  // This keeps the server-side path (SSR HTML) and the client refetch consistent.
+  return products.filter((p) => typeof p.image === 'string' && p.image.trim() !== '');
 }

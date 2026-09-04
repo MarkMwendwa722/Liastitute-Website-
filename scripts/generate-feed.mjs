@@ -1,5 +1,6 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { deriveProductId } from './product-id.mjs';
 
 const siteUrl = process.env.VITE_SITE_URL || 'https://lijustore.co.ke';
 const root = process.cwd();
@@ -26,9 +27,22 @@ async function main() {
       throw new Error('Unexpected API response shape');
     }
 
-    items = json.data.map((p) => {
-      const id = p.externalId || p.id;
-      const imageUrl = p.imageUrl || (p.images && p.images[0]) || '';
+    // Only submit products that are complete enough for Google Merchant. A
+    // product missing a description, a real Google category or an image would
+    // otherwise be sent with bogus data (a literal "null" description / a
+    // wrong default category), which can trigger misrepresentation — so skip
+    // those with a clear warning instead.
+    for (const p of json.data) {
+      const id = deriveProductId(p);
+      const description = (p.description || '').toString().trim();
+      const googleCategory = (p.googleProductCategory || '').trim();
+      const imageUrl = p.imageUrl || (Array.isArray(p.images) && p.images[0]) || '';
+
+      if (!id) { console.warn(`⚠️  Skipping "${p.name}": no usable id (externalId/_id)`); continue; }
+      if (!googleCategory) { console.warn(`⚠️  Skipping "${p.name}": missing googleProductCategory`); continue; }
+      if (!description) { console.warn(`⚠️  Skipping "${p.name}": missing description`); continue; }
+      if (!imageUrl) { console.warn(`⚠️  Skipping "${p.name}": missing image`); continue; }
+
       const priceFormatted = `${Number(p.price).toFixed(2)} KES`;
       const hasSalePrice = p.comparePrice != null;
       const salePriceFormatted = hasSalePrice ? `${Number(p.comparePrice).toFixed(2)} KES` : null;
@@ -37,7 +51,7 @@ async function main() {
       let xml = `    <item>
       <g:id>${escapeXml(id)}</g:id>
       <g:title>${escapeXml(p.name)}</g:title>
-      <g:description>${escapeXml(p.description)}</g:description>
+      <g:description>${escapeXml(description)}</g:description>
       <g:link>${siteUrl}/products/${escapeXml(id)}</g:link>
       <g:image_link>${escapeXml(imageUrl)}</g:image_link>
       <g:price>${priceFormatted}</g:price>`;
@@ -49,11 +63,11 @@ async function main() {
       xml += `\n      <g:availability>${stockNum > 0 ? 'in_stock' : 'out_of_stock'}</g:availability>
       <g:condition>new</g:condition>
       <g:brand>${escapeXml(p.brand || 'Lijustore')}</g:brand>
-      <g:google_product_category>${escapeXml(p.googleProductCategory || 'Home & Garden > Household Appliances')}</g:google_product_category>
+      <g:google_product_category>${escapeXml(googleCategory)}</g:google_product_category>
     </item>`;
 
-      return xml;
-    });
+      items.push(xml);
+    }
   } catch {
     console.warn('⚠️  Products API unreachable — feed will contain no products.');
   }

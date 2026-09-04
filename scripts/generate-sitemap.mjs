@@ -1,5 +1,6 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { deriveProductId } from './product-id.mjs';
 
 const siteUrl = process.env.VITE_SITE_URL || 'https://lijustore.co.ke';
 const root = process.cwd();
@@ -14,7 +15,12 @@ async function fetchProductIds() {
     if (!res.ok) return [];
     const json = await res.json();
     if (!json.success || !Array.isArray(json.data)) return [];
-    return json.data.map((p) => p.externalId || p.id);
+    // Use the same id the app renders for product pages (numeric externalId,
+    // else a number derived from the mongo _id) so sitemap URLs point at real
+    // product pages instead of mongo hex strings the app can't resolve.
+    return json.data
+      .map((p) => deriveProductId(p))
+      .filter((id) => id > 0);
   } catch {
     console.warn('⚠️  Products API unreachable — sitemap will contain static pages only.');
     return [];

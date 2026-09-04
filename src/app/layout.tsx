@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 import LayoutClient from './LayoutClient'
 import { fetchProducts } from '@/utils/api'
@@ -26,10 +27,12 @@ export const metadata: Metadata = {
   },
 }
 
-// Cache products server-side for 5 minutes so every page load isn't blocked
-// by a slow API call. Keeps product data in the SSR HTML (SEO) while staying fast.
+// Cache products server-side briefly so every page load isn't blocked by a
+// slow API call, while still letting newly added products appear quickly. The
+// client also reconciles in the background (see SearchContext), so this only
+// keeps the SSR HTML reasonably fresh.
 let productsCache: { data: import('@/types').Product[]; at: number } | null = null
-const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
+const CACHE_TTL = 60 * 1000 // 60 seconds
 
 async function getProducts() {
   if (productsCache && Date.now() - productsCache.at < CACHE_TTL) {
@@ -53,12 +56,16 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <script
-          async
+      <body>
+        {/* Google Ads tag — next/script (instead of raw <script> tags) so React
+            doesn't warn about scripts rendered inside the component tree. */}
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18336756304"
+          strategy="afterInteractive"
         />
-        <script
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -68,8 +75,6 @@ export default async function RootLayout({
             `,
           }}
         />
-      </head>
-      <body>
         <LayoutClient initialProducts={products}>{children}</LayoutClient>
       </body>
     </html>

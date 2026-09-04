@@ -47,20 +47,27 @@ export function SearchProvider({
   const [loading, setLoading] = useState(initialProducts.length === 0);
   const [error, setError] = useState<string | null>(null);
 
+  // How often to quietly re-check the API so products added/edited there show
+  // up on the storefront without a manual reload.
+  const SYNC_INTERVAL_MS = 60_000;
+
+  /** Drop products with no usable image and duplicates sharing an image. */
+  const dedupeProducts = (all: Product[]): Product[] => {
+    const seenImages = new Set<string>();
+    return all.filter((p) => {
+      if (typeof p.image !== 'string' || p.image.trim() === '') return false;
+      if (seenImages.has(p.image)) return false;
+      seenImages.add(p.image);
+      return true;
+    });
+  };
+
   const loadProducts = async () => {
     setLoading(true);
     setError(null);
     try {
       const all = await fetchProducts();
-      // Deduplicate by image (same logic as before)
-      const seenImages = new Set<string>();
-      const deduped = all.filter((p) => {
-        if (typeof p.image !== 'string' || p.image.trim() === '') return false;
-        if (seenImages.has(p.image)) return false;
-        seenImages.add(p.image);
-        return true;
-      });
-      setProducts(deduped);
+      setProducts(dedupeProducts(all));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load products');
     } finally {
@@ -68,11 +75,53 @@ export function SearchProvider({
     }
   };
 
+  // Background sync — no loading flash, and never clears the current list if
+  // the request fails. Lets newly added API products appear right away.
+  const syncProducts = async () => {
+    try {
+      const all = await fetchProducts();
+      setProducts(dedupeProducts(all));
+    } catch {
+      // keep showing the products we already have
+    }
+  };
+
+  // First load: fetch client-side only when the server didn't provide products.
   useEffect(() => {
-    // Only fetch client-side when there are no server-provided products
     if (initialProducts.length === 0) {
       loadProducts();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Keep the storefront fresh: reconcile shortly after hydration (the server
+  // HTML may be a few minutes stale), then poll quietly and refresh whenever
+  // the tab becomes visible/focused again.
+  useEffect(() => {
+    // Background sync targets the deployed API. In development the Next server
+    // already renders fresh data on every request and the API doesn't allow
+    // CORS from localhost, so only run this against the production origin.
+    if (process.env.NODE_ENV !== 'production') return;
+
+    const reconcile = window.setTimeout(() => {
+      if (initialProducts.length > 0) syncProducts();
+    }, 1500);
+
+    const interval = window.setInterval(syncProducts, SYNC_INTERVAL_MS);
+
+    const onWake = () => {
+      if (document.visibilityState === 'visible') syncProducts();
+    };
+    document.addEventListener('visibilitychange', onWake);
+    window.addEventListener('focus', onWake);
+
+    return () => {
+      window.clearTimeout(reconcile);
+      window.clearInterval(interval);
+      document.removeEventListener('visibilitychange', onWake);
+      window.removeEventListener('focus', onWake);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filtered = products.filter((p) => {

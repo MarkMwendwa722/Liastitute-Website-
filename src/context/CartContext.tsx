@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   useReducer,
+  useState,
   useEffect,
   type ReactNode,
   type Dispatch,
@@ -20,6 +21,7 @@ type CartAction =
   | { type: 'ADD_TO_CART'; payload: Product }
   | { type: 'REMOVE_FROM_CART'; payload: number }
   | { type: 'UPDATE_QUANTITY'; payload: { id: number; quantity: number } }
+  | { type: 'HYDRATE'; items: CartItem[] }
   | { type: 'CLEAR_CART' };
 
 // ─── Context ──────────────────────────────────────────────────────────────────
@@ -75,30 +77,50 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         ),
       };
     }
+    case 'HYDRATE':
+      return { items: action.items };
     case 'CLEAR_CART':
-      return { ...state, items: [] };
+      return { items: [] };
     default:
       return state;
-  }
-}
-
-function getInitialState(): CartState {
-  try {
-    const saved = localStorage.getItem('cart');
-    return saved ? { items: JSON.parse(saved) as CartItem[] } : { items: [] };
-  } catch {
-    return { items: [] };
   }
 }
 
 // ─── Provider ─────────────────────────────────────────────────────────────────
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(cartReducer, undefined, getInitialState);
+  // Start empty on both the server and the first client render so the hydrated
+  // HTML always matches (reading localStorage here would make the server and
+  // client disagree whenever a saved cart exists → hydration error). The saved
+  // cart is loaded from localStorage right after mount instead.
+  const [state, dispatch] = useReducer(cartReducer, { items: [] });
+  const [hydrated, setHydrated] = useState(false);
 
+  // Load the persisted cart after hydration (localStorage is client-only).
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(state.items));
-  }, [state.items]);
+    try {
+      const saved = localStorage.getItem('cart');
+      if (saved) {
+        const items = JSON.parse(saved) as CartItem[];
+        if (Array.isArray(items)) dispatch({ type: 'HYDRATE', items });
+      }
+    } catch {
+      // ignore missing/corrupted storage
+    }
+    setHydrated(true);
+  }, []);
+
+  // Persist changes — but only after hydration, so the empty initial state is
+  // never written over an existing saved cart on first mount.
+  useEffect(() => {
+    if (hydrated) {
+      try {
+        localStorage.setItem('cart', JSON.stringify(state.items));
+      } catch {
+        // storage may be unavailable (private browsing, etc.)
+      }
+    }
+  }, [state.items, hydrated]);
 
   const addToCart = (product: Product) =>
     dispatch({ type: 'ADD_TO_CART', payload: product });
