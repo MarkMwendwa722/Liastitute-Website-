@@ -6,10 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "generate-sitemap": "node scripts/generate-sitemap.mjs",
-    "generate-feed": "node scripts/generate-feed.mjs",
-    "prebuild": "node scripts/generate-sitemap.mjs && node scripts/generate-feed.mjs"
+    "lint": "next lint"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",

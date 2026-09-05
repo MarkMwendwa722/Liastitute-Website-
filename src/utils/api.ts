@@ -94,7 +94,7 @@ function toLocalImage(url: string): string {
  * back to a numeric derived from the MongoDB `_id` so the product still gets a
  * real id instead of 0 (which duplicated React keys and broke detail links).
  */
-function deriveProductId(apiProduct: import('../types').ApiProduct): number {
+export function deriveProductId(apiProduct: import('../types').ApiProduct): number {
   const ext = Number(apiProduct.externalId);
   if (Number.isFinite(ext) && ext > 0) return ext;
   const hex = (apiProduct._id || '').replace(/[^0-9a-f]/gi, '').slice(0, 13);
