@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Star } from 'lucide-react';
+import { MessageCircle, ShoppingCart, Star } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { getDisplayCategory } from '../utils/api';
+import { buildOrderMessage, buildWhatsAppUrl } from '../utils/whatsapp';
 import type { Product } from '../types';
 
 interface Props {
@@ -36,6 +37,17 @@ export default function ProductCard({ product }: Props) {
     addToCart(product);
   };
 
+  // Order this single product on WhatsApp.
+  const whatsappUrl = buildWhatsAppUrl(
+    buildOrderMessage([{ name: product.name, price: product.price, quantity: 1 }], product.price),
+  );
+
+  const handleWhatsApp = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <Link
       href={`/products/${product.id}`}
@@ -60,6 +72,19 @@ export default function ProductCard({ product }: Props) {
             -{discount}%
           </span>
         )}
+
+        {/* WhatsApp order overlay — revealed when hovering the card */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-black/50 to-transparent opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200">
+          <button
+            onClick={handleWhatsApp}
+            className="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm sm:text-xs font-bold text-white bg-[#25D366] hover:bg-[#1DA851] shadow-lg transition-colors"
+            title={`Order ${product.name} on WhatsApp`}
+            aria-label={`Order ${product.name} on WhatsApp`}
+          >
+            <MessageCircle size={14} />
+            Order on WhatsApp
+          </button>
+        </div>
       </div>
 
       {/* Info */}

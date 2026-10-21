@@ -5,13 +5,14 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
   ShoppingCart, Star, ArrowLeft,
-  Check, Truck, RotateCcw, ShieldCheck,
+  Check, Truck, RotateCcw, ShieldCheck, MessageCircle,
 } from 'lucide-react';
 import { useSearch } from '../context/SearchContext';
 import { useCart } from '../context/CartContext';
 import ProductCard from '../components/ProductCard';
 import Seo from '../components/Seo';
 import { getDisplayCategory } from '../utils/api';
+import { buildOrderMessage, buildWhatsAppUrl } from '../utils/whatsapp';
 
 const ProductDetail = () => {
   const params = useParams();
@@ -59,8 +60,16 @@ const ProductDetail = () => {
 
   const handleMakeOrder = () => {
     for (let i = 0; i < quantity; i++) addToCart(product);
-    router.push('/checkout');
+    router.push('/cart');
   };
+
+  // WhatsApp order link pre-filled with this product and the chosen quantity.
+  const whatsappUrl = buildWhatsAppUrl(
+    buildOrderMessage(
+      [{ name: product.name, price: product.price, quantity }],
+      product.price * quantity,
+    ),
+  );
 
   const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://lijustore.co.ke';
   const productUrl = `${SITE_URL}/products/${product.id}`;
@@ -230,6 +239,15 @@ const ProductDetail = () => {
           >
             Make an Order
           </button>
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 rounded-xl font-bold transition-colors no-underline"
+          >
+            <MessageCircle size={18} /> Order on WhatsApp
+          </a>
 
           {inCart && !addedMsg && (
             <Link href="/cart" className="text-brand font-semibold text-sm no-underline hover:underline">

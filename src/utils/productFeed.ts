@@ -69,6 +69,112 @@ export async function fetchAllApiProducts(): Promise<ApiProduct[]> {
 }
 
 /**
+ * Canonical Google product categories, keyed by the store's display
+ * subcategory label. Every product that resolves to the same label emits the
+ * SAME full <g:google_product_category> path — a walkie-talkie added today gets
+ * exactly the same value as an earlier one in the same category.
+ *
+ * The values are the full paths this feed already uses in production (so
+ * existing items stay byte-for-byte identical). NOTE: a couple of the legacy
+ * prefixes are NOT Google's current taxonomy naming (Google uses "Sporting
+ * Goods", not "Sports & Outdoors") — if Merchant Center flags a path in its
+ * Diagnostics tab, update the value in this single table and every product in
+ * that category changes together.
+ */
+export const CANONICAL_GOOGLE_CATEGORY: Record<string, string> = {
+  'Home Appliances': 'Home & Garden > Household Appliances',
+  'Kitchen Appliances': 'Home & Garden > Kitchen & Dining > Kitchen Appliances',
+  Tools: 'Home & Garden > Lawn & Garden > Garden Tools',
+  'Office Equipment': 'Office Supplies > Office Equipment',
+  'Networking & Communication': 'Electronics > Communications > Telecommunications',
+  'Security Cameras & Surveillance Systems': 'Electronics > Security & Surveillance',
+  Lighting: 'Home & Garden > Lighting',
+  Electrical: 'Electronics > Electrical',
+  Electronics: 'Electronics',
+  'Automotive Accessories':
+    'Vehicles & Parts > Automotive Parts & Accessories > Automotive Accessories',
+  Furniture: 'Home & Garden > Furniture',
+  'Bathroom Organizers': 'Home & Garden > Bathroom',
+  "Kids & Baby": 'Sports & Outdoors > Cycling > Bikes',
+  'Fitness Equipment': 'Sports & Outdoors > Exercise & Fitness > Fitness Equipment',
+  "Toys & Kids' Gifts": 'Toys & Games > Toys',
+};
+
+/**
+ * Ordered keyword rules used to infer the SPECIFIC subcategory when the API
+ * only stores a broad, single-segment category. Newly added products often
+ * come in with just "Electronics", "Office Supplies", "Sports & Outdoors" or
+ * "Vehicles & Parts" (no " > " path), which is why they previously disagreed
+ * with older products in the same category. Checked in order — the first label
+ * whose keyword appears in the product name/slug wins.
+ */
+const CATEGORY_KEYWORDS: Array<[label: string, keywords: string[]]> = [
+  [
+    'Security Cameras & Surveillance Systems',
+    ['cctv', 'surveillance', 'security camera', 'solar powered camera', 'solar camera'],
+  ],
+  [
+    'Networking & Communication',
+    [
+      'wifi', 'wi-fi', 'router', 'mikrotik', 'ruijie', 'access point', 'walkie', 'radio',
+      'baofeng', 'telephone', 'landline', 'sim card', 'gsm', 'two-way', 'server rack',
+      'network cabinet', 'fixed wireless', 'phone', 'network',
+    ],
+  ],
+  [
+    'Office Equipment',
+    ['receipt', 'thermal', 'printer', 'money counting', 'cash register', 'point of sale', 'pos '],
+  ],
+  [
+    'Kitchen Appliances',
+    ['kettle', 'blender', 'cooker', 'pressure cooker', 'crepe', 'chapati', 'cookware', 'kitchen scale', 'microwave'],
+  ],
+  ['Home Appliances', ['washing machine', 'dryer', 'fridge', 'refrigerator', 'iron box', 'steam iron', 'dry iron']],
+  ['Lighting', ['flood light', 'light bulb', 'lamp', 'led strip', 'light']],
+  [
+    "Kids & Baby",
+    ['tricycle', 'kids', "kid's", ' kid ', 'push handle', 'bicycle', 'bike', 'baby', 'children'],
+  ],
+  ['Fitness Equipment', ['fitness', 'exercise', 'treadmill', 'dumbbell', 'gym']],
+  [
+    'Automotive Accessories',
+    ['jump starter', 'vehicle', 'automotive', 'car compressor', 'inspection mirror', 'search mirror'],
+  ],
+  ['Tools', ['sprayer', 'knapsack', 'drill', 'garden tool', 'hammer', 'saw', 'wrench']],
+  ['Furniture', ['office chair', 'chair', 'desk', 'sofa', 'table', 'bed', 'furniture']],
+  ['Bathroom Organizers', ['bathroom', 'organizer', 'shower', 'towel rack']],
+  ["Toys & Kids' Gifts", ['piggy bank', 'toy', 'puzzle', 'doll', 'lego']],
+];
+
+/**
+ * Pick the <g:google_product_category> for a product.
+ *
+ * - A stored value that already contains " > " is a specific full path — used
+ *   as-is (it already matches its siblings).
+ * - A stored value with NO " > " is a broad top-level (typical for newly added
+ *   products). We infer the specific subcategory from the name/slug and emit
+ *   the canonical full path for it, so every product in that category shows the
+ *   same value as the rest of the category.
+ * - If nothing matches, the broad value is kept (never guessed).
+ */
+export function resolveGoogleCategory(apiProduct: ApiProduct): string {
+  const raw = (apiProduct.googleProductCategory || '').trim();
+  if (raw.includes(' > ')) return raw;
+
+  const hay = `${apiProduct.name || ''} ${apiProduct.slug || ''}`.toLowerCase();
+  for (const [label, keywords] of CATEGORY_KEYWORDS) {
+    if (keywords.some((keyword) => hay.includes(keyword))) {
+      const full = CANONICAL_GOOGLE_CATEGORY[label];
+      if (full) {
+        console.warn(`🏷️  "${apiProduct.name}": mapped broad category "${raw}" -> "${full}" (${label})`);
+        return full;
+      }
+    }
+  }
+  return CANONICAL_GOOGLE_CATEGORY[raw] || raw;
+}
+
+/**
  * Build the Google Merchant RSS feed. Products missing a description, a real
  * Google product category or an image are SKIPPED with a warning — submitting
  * them would send a literal "null" description / wrong default category to
@@ -81,7 +187,7 @@ export function buildProductFeedXml(products: ApiProduct[]): string {
   for (const p of products) {
     const id = deriveProductId(p);
     const description = (p.description || '').toString().trim();
-    const googleCategory = (p.googleProductCategory || '').trim();
+    const googleCategory = resolveGoogleCategory(p);
     const imageUrl = p.imageUrl || (Array.isArray(p.images) && p.images[0]) || '';
 
     if (!id) {
