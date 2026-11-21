@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import Script from 'next/script'
 import './globals.css'
 import LayoutClient from './LayoutClient'
+import FacebookPixel from '@/components/FacebookPixel'
 import { fetchProducts } from '@/utils/api'
 
 const SITE_NAME = 'Lijustore'
@@ -75,6 +77,11 @@ export default async function RootLayout({
             `,
           }}
         />
+        {/* Facebook Pixel — Suspense required because the client component
+            reads useSearchParams for SPA PageView tracking. */}
+        <Suspense fallback={null}>
+          <FacebookPixel />
+        </Suspense>
         <LayoutClient initialProducts={products}>{children}</LayoutClient>
       </body>
     </html>
